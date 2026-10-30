@@ -10,9 +10,9 @@ A scheduled, auditable **preliminary** parcel-screening system for Promittens En
 - The workflow also runs on pushes to the source files and supports manual dispatch.
 - It runs offline regression tests, attempts live NJGIN/NJDEP GIS calls from GitHub-hosted compute, and writes auditable results to `daily_reports/`.
 - State in `daily_reports/state.json` tracks which provisional candidate assessor locations and parcels have been surfaced. **40 previously reported properties** are preseeded in `seed_excluded_addresses.txt`.
-- New outputs, when available, are `YYYY-MM-DD_provisional_parcels.csv`, `YYYY-MM-DD_addresses_UNVERIFIED.txt`, and `YYYY-MM-DD_audit.json`. Runs upload the output as a GitHub Actions artifact.
+- Each completed run creates **`daily_reports/YYYY-MM-DD_NJ_solar_carport_prospects.xlsx`** with a sortable lead sheet and methods/audit sheet, plus `YYYY-MM-DD_enriched_candidates.csv` and the original GIS audit. The workbook leaves ownership BLANK for user verification, labels unknown parking counts and hosting capacity honestly, and records matching OpenStreetMap parking polygons where available. Archived 2020 aerial-image previews are generated for selected leads when the official service responds. Artifacts are also downloadable from each GitHub Actions run.
 - Individual parcel failures are recorded. If all live queries fail, the job fails rather than silently presenting synthetic geometries.
-- Current scanner does **not** create 20 independently verified property leads, count striped parking stalls from imagery, confirm utility hosting MW, or send outreach. It builds a prioritization list requiring secondary due diligence.
+- The GIS scanner aims to deliver 20 NEW **preliminary** property rows per run; these are not 20 independently verified buildable carport sites. It does not claim to count striped stalls or determine feeder-specific hosting MW. Ownership research is intentionally outside this system; the user will handle it.
 - Current geometry is a grid/paginated screening prototype, not a finished statewide exhaustive database. Work remains on per-tile retry coverage, current aerial counting, entity ownership, and direct delivery integration.
 
 ## Sources
