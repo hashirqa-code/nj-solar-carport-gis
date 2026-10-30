@@ -825,6 +825,713 @@
         "settings": {}
       },
       "url_hints": []
+    },
+    "PSEG_data_sources": {
+      "dataSources": {
+        "dataSource_2": {
+          "id": "dataSource_2",
+          "type": "WEB_MAP",
+          "sourceLabel": "HCM_EVCapacityMap",
+          "itemId": "8ca576ed71834fa1bb35ace7a9861629",
+          "portalUrl": "https://PSEG-NJ.maps.arcgis.com"
+        },
+        "dataSource_4": {
+          "id": "dataSource_4",
+          "type": "WEB_MAP",
+          "sourceLabel": "HCM - NetMetering SSP-PSP",
+          "itemId": "612d3f98d4e84a20945aa25a86fecf0d",
+          "portalUrl": "https://PSEG-NJ.maps.arcgis.com"
+        },
+        "widget_87_output_config_default_geocode_utility_1_0": {
+          "id": "widget_87_output_config_default_geocode_utility_1_0",
+          "type": "FEATURE_LAYER",
+          "label": "ArcGIS World Geocoding Service",
+          "originDataSources": [],
+          "isOutputFromWidget": true,
+          "isDataInDataSourceInstance": false,
+          "schema": {
+            "label": "ArcGIS World Geocoding Service",
+            "idField": "objectid",
+            "fields": {
+              "default_address": {
+                "jimuName": "default_address",
+                "alias": "Default Address",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "name": "default_address"
+              },
+              "objectid": {
+                "jimuName": "objectid",
+                "alias": "OBJECTID",
+                "esriType": "esriFieldTypeOID",
+                "type": "NUMBER",
+                "name": "objectid"
+              },
+              "Address": {
+                "jimuName": "Address",
+                "name": "Address",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address or Place"
+              },
+              "Address2": {
+                "jimuName": "Address2",
+                "name": "Address2",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address2"
+              },
+              "Address3": {
+                "jimuName": "Address3",
+                "name": "Address3",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address3"
+              },
+              "Neighborhood": {
+                "jimuName": "Neighborhood",
+                "name": "Neighborhood",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Neighborhood"
+              },
+              "City": {
+                "jimuName": "City",
+                "name": "City",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "City"
+              },
+              "Subregion": {
+                "jimuName": "Subregion",
+                "name": "Subregion",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Subregion"
+              },
+              "Region": {
+                "jimuName": "Region",
+                "name": "Region",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Region"
+              },
+              "Postal": {
+                "jimuName": "Postal",
+                "name": "Postal",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Postal"
+              },
+              "PostalExt": {
+                "jimuName": "PostalExt",
+                "name": "PostalExt",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Postal Extension"
+              },
+              "CountryCode": {
+                "jimuName": "CountryCode",
+                "name": "CountryCode",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Country"
+              },
+              "Loc_name": {
+                "jimuName": "Loc_name",
+                "name": "Loc_name",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Loc_name"
+              },
+              "Status": {
+                "jimuName": "Status",
+                "name": "Status",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Status"
+              },
+              "Score": {
+                "jimuName": "Score",
+                "name": "Score",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Score",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "Match_addr": {
+                "jimuName": "Match_addr",
+                "name": "Match_addr",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Match Address"
+              },
+              "LongLabel": {
+                "jimuName": "LongLabel",
+                "name": "LongLabel",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Long Label"
+              },
+              "ShortLabel": {
+                "jimuName": "ShortLabel",
+                "name": "ShortLabel",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Short Label"
+              },
+              "Addr_type": {
+                "jimuName": "Addr_type",
+                "name": "Addr_type",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address Type"
+              },
+              "Type": {
+                "jimuName": "Type",
+                "name": "Type",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Type"
+              },
+              "PlaceName": {
+                "jimuName": "PlaceName",
+                "name": "PlaceName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Place Name"
+              },
+              "Place_addr": {
+                "jimuName": "Place_addr",
+                "name": "Place_addr",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Place Address"
+              },
+              "Phone": {
+                "jimuName": "Phone",
+                "name": "Phone",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Phone Number"
+              },
+              "URL": {
+                "jimuName": "URL",
+                "name": "URL",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "URL"
+              },
+              "Rank": {
+                "jimuName": "Rank",
+                "name": "Rank",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Rank",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "AddBldg": {
+                "jimuName": "AddBldg",
+                "name": "AddBldg",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address Building"
+              },
+              "AddNum": {
+                "jimuName": "AddNum",
+                "name": "AddNum",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address Number"
+              },
+              "AddNumFrom": {
+                "jimuName": "AddNumFrom",
+                "name": "AddNumFrom",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address Number From"
+              },
+              "AddNumTo": {
+                "jimuName": "AddNumTo",
+                "name": "AddNumTo",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address Number To"
+              },
+              "AddRange": {
+                "jimuName": "AddRange",
+                "name": "AddRange",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Address Range"
+              },
+              "Side": {
+                "jimuName": "Side",
+                "name": "Side",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Side"
+              },
+              "StPreDir": {
+                "jimuName": "StPreDir",
+                "name": "StPreDir",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Prefix Directional"
+              },
+              "StPreType": {
+                "jimuName": "StPreType",
+                "name": "StPreType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Prefix Type"
+              },
+              "StName": {
+                "jimuName": "StName",
+                "name": "StName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Street Name"
+              },
+              "StType": {
+                "jimuName": "StType",
+                "name": "StType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Suffix Type"
+              },
+              "StDir": {
+                "jimuName": "StDir",
+                "name": "StDir",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Suffix Directional"
+              },
+              "BldgComp": {
+                "jimuName": "BldgComp",
+                "name": "BldgComp",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Building Complex"
+              },
+              "BldgType": {
+                "jimuName": "BldgType",
+                "name": "BldgType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Building Type"
+              },
+              "BldgName": {
+                "jimuName": "BldgName",
+                "name": "BldgName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Building Name"
+              },
+              "LevelType": {
+                "jimuName": "LevelType",
+                "name": "LevelType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Level Type"
+              },
+              "LevelName": {
+                "jimuName": "LevelName",
+                "name": "LevelName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Level Name"
+              },
+              "UnitType": {
+                "jimuName": "UnitType",
+                "name": "UnitType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Unit Type"
+              },
+              "UnitName": {
+                "jimuName": "UnitName",
+                "name": "UnitName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Unit Name"
+              },
+              "RoomType": {
+                "jimuName": "RoomType",
+                "name": "RoomType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Room Type"
+              },
+              "RoomName": {
+                "jimuName": "RoomName",
+                "name": "RoomName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Room Name"
+              },
+              "WingType": {
+                "jimuName": "WingType",
+                "name": "WingType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Wing Type"
+              },
+              "WingName": {
+                "jimuName": "WingName",
+                "name": "WingName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Wing Name"
+              },
+              "SubAddr": {
+                "jimuName": "SubAddr",
+                "name": "SubAddr",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Subaddress"
+              },
+              "StAddr": {
+                "jimuName": "StAddr",
+                "name": "StAddr",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Street Address"
+              },
+              "Block": {
+                "jimuName": "Block",
+                "name": "Block",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Block"
+              },
+              "Sector": {
+                "jimuName": "Sector",
+                "name": "Sector",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Sector"
+              },
+              "Nbrhd": {
+                "jimuName": "Nbrhd",
+                "name": "Nbrhd",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Neighborhood"
+              },
+              "District": {
+                "jimuName": "District",
+                "name": "District",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "District"
+              },
+              "MetroArea": {
+                "jimuName": "MetroArea",
+                "name": "MetroArea",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Metro Area"
+              },
+              "RegionAbbr": {
+                "jimuName": "RegionAbbr",
+                "name": "RegionAbbr",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Region Abbreviation"
+              },
+              "Territory": {
+                "jimuName": "Territory",
+                "name": "Territory",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Territory"
+              },
+              "Zone": {
+                "jimuName": "Zone",
+                "name": "Zone",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Zone"
+              },
+              "Country": {
+                "jimuName": "Country",
+                "name": "Country",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Country"
+              },
+              "CntryName": {
+                "jimuName": "CntryName",
+                "name": "CntryName",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Country Name"
+              },
+              "LangCode": {
+                "jimuName": "LangCode",
+                "name": "LangCode",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Language Code"
+              },
+              "Distance": {
+                "jimuName": "Distance",
+                "name": "Distance",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Distance",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "X": {
+                "jimuName": "X",
+                "name": "X",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "X",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "Y": {
+                "jimuName": "Y",
+                "name": "Y",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Y",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "DisplayX": {
+                "jimuName": "DisplayX",
+                "name": "DisplayX",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Display X",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "DisplayY": {
+                "jimuName": "DisplayY",
+                "name": "DisplayY",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Display Y",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "Xmin": {
+                "jimuName": "Xmin",
+                "name": "Xmin",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Minimum X",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "Xmax": {
+                "jimuName": "Xmax",
+                "name": "Xmax",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Maximum X",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "Ymin": {
+                "jimuName": "Ymin",
+                "name": "Ymin",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Minimum Y",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "Ymax": {
+                "jimuName": "Ymax",
+                "name": "Ymax",
+                "type": "NUMBER",
+                "esriType": "esriFieldTypeDouble",
+                "alias": "Maximum Y",
+                "fieldFormat": {
+                  "type": "number",
+                  "minimumFractionDigits": 0,
+                  "maximumFractionDigits": 2,
+                  "useGrouping": "auto"
+                }
+              },
+              "ExInfo": {
+                "jimuName": "ExInfo",
+                "name": "ExInfo",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Extra Info"
+              },
+              "MatchID": {
+                "jimuName": "MatchID",
+                "name": "MatchID",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "MatchID"
+              },
+              "PotentialID": {
+                "jimuName": "PotentialID",
+                "name": "PotentialID",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "PotentialID"
+              },
+              "MatchNarrative": {
+                "jimuName": "MatchNarrative",
+                "name": "MatchNarrative",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Match Narrative"
+              },
+              "StrucType": {
+                "jimuName": "StrucType",
+                "name": "StrucType",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Structure Type"
+              },
+              "StrucDet": {
+                "jimuName": "StrucDet",
+                "name": "StrucDet",
+                "type": "STRING",
+                "esriType": "esriFieldTypeString",
+                "alias": "Structure Details"
+              }
+            }
+          },
+          "geometryType": "esriGeometryPoint"
+        }
+      }
+    },
+    "PSEG_derived_612d3f98d4e84a20945aa25a86fecf0d": {
+      "item": {
+        "id": "612d3f98d4e84a20945aa25a86fecf0d",
+        "title": "HCM - NetMetering SSP-PSP",
+        "type": "Web Map",
+        "url": "",
+        "access": "public",
+        "modified": 1788463766000,
+        "error": null
+      },
+      "operationalLayers": [
+        {
+          "title": "Divisions",
+          "url": "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/Divisions/FeatureServer/0",
+          "itemId": "bf5dacca04dd400a8d30111c4837b521"
+        },
+        {
+          "title": "Generation Capacity",
+          "url": "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/1",
+          "itemId": "ba47ac24122244e696eb0995236a9c04"
+        },
+        {
+          "title": "HCM PSP",
+          "url": "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/0",
+          "itemId": "ba47ac24122244e696eb0995236a9c04"
+        }
+      ],
+      "url_hints": [
+        "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/Divisions/FeatureServer",
+        "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer",
+        "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer",
+        "https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer"
+      ]
+    },
+    "PSEG_derived_8ca576ed71834fa1bb35ace7a9861629": {
+      "item": {
+        "id": "8ca576ed71834fa1bb35ace7a9861629",
+        "title": "HCM_EVCapacityMap",
+        "type": "Web Map",
+        "url": "",
+        "access": "public",
+        "modified": 1788463812000,
+        "error": null
+      },
+      "operationalLayers": [
+        {
+          "title": "EVCapacity",
+          "url": "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/EVCapacity/FeatureServer/0",
+          "itemId": "10a7a98187f142ebb27308a475c69a55"
+        },
+        {
+          "title": "Divisions",
+          "url": "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/Divisions/FeatureServer/0",
+          "itemId": "bf5dacca04dd400a8d30111c4837b521"
+        }
+      ],
+      "url_hints": [
+        "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/EVCapacity/FeatureServer",
+        "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/Divisions/FeatureServer",
+        "https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer"
+      ]
+    },
+    "JCP_webmap": {
+      "item": {
+        "id": "06e89c8ad9c7441c944861aac5d1e54c",
+        "title": "Solar Accommodation Limit",
+        "type": "Web Map",
+        "url": null,
+        "modified": 1746737833000
+      },
+      "operationalLayers": [
+        {
+          "title": "Solar Accommodation Limit",
+          "url": "https://services9.arcgis.com/QhIvHlqYDjdoPWZG/arcgis/rest/services/Solar_Accommodation_Limit_2020/FeatureServer/0",
+          "itemId": "546e9834416b42aba00b30ce6f59cc5f"
+        },
+        {
+          "title": "JCPL Territory",
+          "url": "https://services9.arcgis.com/QhIvHlqYDjdoPWZG/arcgis/rest/services/JCPL_Territory_July_2019/FeatureServer/0",
+          "itemId": "ff2feec76603411f9c86bc7b8eb7127d"
+        }
+      ]
     }
   },
   "search": {
