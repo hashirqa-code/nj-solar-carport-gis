@@ -46,6 +46,30 @@ for key,url in {
   found=re.findall(r"https?[^\s\"'<>]{8,180}(?:arcgis|FeatureServer|MapServer)[^\s\"'<>]{0,200}",txt,re.I)
   report["maps"][key]={"http":r.status_code,"url":r.url,"matched_urls":found[:15],"bytes":len(txt)}
  except Exception as e:report["maps"][key]={"error":str(e)[:210]}
+# Newer first-party JCP transformer accommodation points, last updated June 2026
+jcp="https://services9.arcgis.com/QhIvHlqYDjdoPWZG/arcgis/rest/services/Solar_Accommodation_Limit_2020/FeatureServer/0"
+for name,url in {"JCP_2026_points":jcp}.items():
+ m=get(url)
+ sample=get(url+"/query",{"f":"json","where":"1=1","outFields":"*","returnGeometry":"false","resultRecordCount":4})
+ report["layers"][name]={"url":url,"fields":[{"name":y.get("name"),"alias":y.get("alias")} for y in m.get("fields",[])],
+    "geometryType":m.get("geometryType"),"lastEditDate":m.get("editingInfo",{}).get("lastEditDate"),
+    "samples":[z.get("attributes") for z in sample.get("features",[])],"sampleError":sample.get("error")}
+# ArcGIS Experience is PSEG's current NJ hosting application
+eid="c28232df7cad40dfb9cf049c9cb97237"
+for label,id in {"PSEG_Experience":eid}.items():
+ it=get("https://www.arcgis.com/sharing/rest/content/items/"+id)
+ dat=get("https://www.arcgis.com/sharing/rest/content/items/"+id+"/data")
+ serialized=json.dumps(dat)
+ found=re.findall(r'https?://[^"\\\\ ]{10,300}(?:FeatureServer|MapServer)(?:/\\d+)?',serialized)
+ found2=re.findall(r'[a-f0-9]{32}',serialized)
+ report["maps"][label]={"item":{k:it.get(k) for k in ("id","title","type","url","access","modified","error")},
+   "data_keys":list(dat.keys()),"feature_url_hints":found[:25],"item_id_hints":list(dict.fromkeys(found2))[:45],
+   "data_preview":serialized[:1500]}
+# JCP public webmap ID is nested inside web application configuration
+jdata=get("https://www.arcgis.com/sharing/rest/content/items/d43cf2482a344e469eae6ca569403c24/data")
+report["maps"]["JCP_app_config"]={"map":jdata.get("map"),"dataSource":jdata.get("dataSource"),
+ "url_hints":re.findall(r'https?://[^"\\\\ ]{10,250}(?:FeatureServer|MapServer)(?:/\\d+)?',json.dumps(jdata))[:20]}
+
 for q in ['PSE&G solar suitability map','PSE&G hosting capacity New Jersey','JCP&L solar accommodation map','FirstEnergy New Jersey hosting capacity']:
  d=get("https://www.arcgis.com/sharing/rest/search",{"f":"json","q":q,"num":30},timeout=19)
  report["search"][q]=[{"id":x.get("id"),"title":x.get("title"),"type":x.get("type"),"url":x.get("url"),"modified":x.get("modified")} for x in d.get("results",[])[:12]]
