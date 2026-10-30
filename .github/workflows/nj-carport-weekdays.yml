@@ -7,6 +7,7 @@ on:
     paths:
       - "pipeline.py"
       - "enrich_reports.py"
+      - "fast_export.py"
       - "test_pipeline.py"
       - "test_enrich_reports.py"
       - "requirements.txt"
@@ -58,8 +59,12 @@ jobs:
       - name: Query live NJGIN and NJDEP geometry
         if: steps.gate.outputs.run == 'true'
         run: python pipeline.py --out daily_reports --tiles 4 --per-tile 25 --max-results 20
-      - name: Enrich parking mapping and generate Excel prospect workbook
+      - name: Generate guaranteed GIS-only Excel fallback
         if: steps.gate.outputs.run == 'true'
+        run: python fast_export.py
+      - name: Enrich parking mapping and improve Excel evidence
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
         run: python enrich_reports.py
       - name: Upload GIS audit and candidate report
         if: always() && steps.gate.outputs.run == 'true'
