@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/fast-spreadsheet.yml"
+      - "parking_estimates.py"
+      - "test_parking_estimates.py"
+      - "fast_export.py"
+      - "enrich_reports.py"
 permissions:
   contents: read
 jobs:
@@ -19,7 +23,7 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - name: Test workbook packaging
-        run: pytest -q test_enrich_reports.py
+        run: pytest -q test_enrich_reports.py test_parking_estimates.py
       - name: Generate initial Excel file without network dependencies
         run: python fast_export.py
       - name: Publish Excel as downloadable artifact
