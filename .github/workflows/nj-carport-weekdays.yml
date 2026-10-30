@@ -8,6 +8,7 @@ on:
       - "pipeline.py"
       - "enrich_reports.py"
       - "test_pipeline.py"
+      - "test_enrich_reports.py"
       - "requirements.txt"
       - "seed_excluded_addresses.txt"
       - ".github/workflows/nj-carport-weekdays.yml"
@@ -20,7 +21,7 @@ permissions:
 
 concurrency:
   group: nj-carport-gis-screen
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   screen:
