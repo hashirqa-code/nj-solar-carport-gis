@@ -6,7 +6,7 @@ A scheduled, auditable **preliminary** parcel-screening system for Promittens En
 
 ## Status and workflow
 
-- Automated GitHub Actions schedule: Monday–Friday at approximately **8:00 AM America/New_York**. GitHub schedules are not exact guarantees and may run late.
+- Automated GitHub Actions schedule: Monday–Friday at approximately **7:00 AM America/New_York**, before the separate ChatGPT 8 AM lead report. GitHub schedules are not exact guarantees and may run late.
 - The workflow also runs on pushes to the source files and supports manual dispatch.
 - It runs offline regression tests, attempts live NJGIN/NJDEP GIS calls from GitHub-hosted compute, and writes auditable results to `daily_reports/`.
 - State in `daily_reports/state.json` tracks which provisional candidate assessor locations and parcels have been surfaced. **40 previously reported properties** are preseeded in `seed_excluded_addresses.txt`.
