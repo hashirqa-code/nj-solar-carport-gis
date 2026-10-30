@@ -153,7 +153,7 @@ def rank(row, matches, failures):
   "hosting_score":"NOT ASSESSED","hosting_match_method":"NO CONFIRMED SERVING FEEDER",
   "hosting_map_source":"", "hosting_queue_raw":"",
   "hosting_capacity_to_project_ratio":"",
-  "hosting_caveats":"Map screening only; connection point/feeder and upgrades must be confirmed",
+  "hosting_capacity_band":"","hosting_caveats":"Map screening only; connection point/feeder and upgrades must be confirmed",
   "hosting_check_failures":"; ".join(failures)[:450],"solar_mwac_likely_for_comparison":need
  }
  if not matches:
@@ -185,8 +185,15 @@ def rank(row, matches, failures):
   result["hosting_score"]=rating
  else:result["hosting_score"]="UNKNOWN — NO PROJECT SIZE"
  if match["utility"]=="JCPL":
-  result["hosting_score"]="CATEGORY-BASED — "+result["hosting_score"]
-  result["hosting_caveats"]+="; capacity is a category lower bound, NOT exact MW."
+  category=match["evidence"].split("category: ",1)[-1].split("; numeric",1)[0]
+  result["hosting_capacity_band"]=category
+  if category.lower().startswith("less than"):
+   result["hosting_map_mw"]="<0.1 MWac"
+   result["hosting_capacity_to_project_ratio"]=""
+   result["hosting_score"]="C — NEARBY MAP BAND <100 kW (NOT ZERO)"
+  else:
+   result["hosting_score"]="CATEGORY-BASED — "+result["hosting_score"]
+  result["hosting_caveats"]+="; capacity category only; never present numeric lower bound as exact MW."
  return result
 
 def run(folder="daily_reports"):
