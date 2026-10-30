@@ -193,7 +193,10 @@ def run(args):
                     if len(record["sample_failures"])<3:record["sample_failures"].append(str(exc)[:260])
                     continue
                 if p["other_pavement_proxy_equivalent_low"]<args.minimum_proxy: continue
-                row={"address":address,"municipality":city,"county":attrs.get("COUNTY"),
+                geom=shape(parcel["geometry"])
+                row={"parcel_lat":round(geom.representative_point().y,7),"parcel_lon":round(geom.representative_point().x,7),
+                     "parcel_polygon_geojson":json.dumps(parcel["geometry"],separators=(",",":")),
+                     "address":address,"municipality":city,"county":attrs.get("COUNTY"),
                      "parcel_pin":pin,"tax_class":attrs.get("PROP_CLASS"),
                      "property_use":attrs.get("PROP_USE"),
                      "assessor_acres":attrs.get("CALC_ACRE"),"parking_spaces_verified":"UNKNOWN",
