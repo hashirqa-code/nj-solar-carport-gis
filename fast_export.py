@@ -35,7 +35,7 @@ def run(folder="daily_reports"):
         2 if str(r.get("hosting_score","")).startswith("B") else
         1 if str(r.get("hosting_score","")).startswith("C") else 0,
         estimate_solar_mw(r)["solar_mwdc_likely"]),reverse=True)
-    widths=[8,26,19,16,16,18,16,17,18,17,18,20,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54,20,34,22,20,18,20,21,68,42,80]
+    widths=[8,26,19,16,16,18,16,17,18,17,18,20,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54,20,34,22,20,18,20,21,68,42,80,38]
     notes=[
       ["Field","Explanation"],
       ["Source",str(src)],
