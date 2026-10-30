@@ -41,3 +41,20 @@ def test_workbook_column_lengths_and_nonblank_estimates():
     assert len(out)==len(FIELDS)
     assert out[FIELDS.index("Est Parking Likely")]>=260
     assert out[FIELDS.index("Documented Parking Spaces (if sourced)")]==""
+
+
+def test_carport_mw_scenarios_derive_from_stall_estimates():
+    from parking_estimates import estimate_solar_mw
+    from enrich_reports import FIELDS,to_workbook_row
+    r={"address":"621 HAMILTON ST","municipality":"FRANKLIN TWP",
+       "tax_class":"4A","property_use":"733",
+       "candidate_other_acres":"3.05","largest_other_piece_acres":"3.05"}
+    e=estimate(r); m=estimate_solar_mw(r)
+    assert m["solar_mwdc_low"] == round(e["parking_estimate_low"] * .65 * 2.0 / 1000,3)
+    assert m["solar_mwdc_likely"] == round(e["parking_estimate_likely"] * .8 * 2.75 / 1000,3)
+    assert m["solar_mwdc_high"] == round(e["parking_estimate_high"] * .9 * 3.4 / 1000,3)
+    assert m["solar_mwdc_low"] < m["solar_mwdc_likely"] < m["solar_mwdc_high"]
+    values=to_workbook_row(r,1)
+    assert len(values)==len(FIELDS)
+    assert values[FIELDS.index("Carport MWdc Likely")] == m["solar_mwdc_likely"]
+    assert values[FIELDS.index("Carport MWdc High")] == m["solar_mwdc_high"]
