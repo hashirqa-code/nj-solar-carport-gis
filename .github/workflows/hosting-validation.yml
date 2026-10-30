@@ -1,0 +1,46 @@
+name: Live Four-Utility Hosting Capacity Validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/hosting-validation.yml"]
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: pip}
+      - run: pip install -r requirements.txt
+      - name: Validate capacity fields and MW units
+        run: python -m pytest -q test_hosting_rank.py test_parking_estimates.py test_enrich_reports.py
+      - name: Query actual nearby ACE, O&R, PSEG and JCP solar accommodation features
+        run: python hosting_rank.py
+      - name: Export hosting-ranked Excel
+        run: python fast_export.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: four-utility-hosting-ranked-excel
+          path: |
+            daily_reports/*_NJ_solar_carport_prospects.xlsx
+            daily_reports/*_hosting_enriched.csv
+            daily_reports/*_hosting_audit.json
+            daily_reports/*_hosting_map_matches.csv
+      - name: Commit result to GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add daily_reports/*_NJ_solar_carport_prospects.xlsx daily_reports/*_hosting*.csv daily_reports/*_hosting_audit.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish four-utility hosting-capacity screening workbook"
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git rebase origin/main || exit 1
+              git push origin HEAD:main && exit 0
+              sleep 2
+            done
+            exit 1
+          fi
