@@ -121,3 +121,30 @@ def estimate(row):
        "parking_land_use_group":kind,
        "estimated_largest_contiguous_row_capacity":contiguous,
     }
+
+
+# Solar-carport physical capacity assumptions (not utility export capacity).
+# fraction of model-estimated spaces that can be spanned, kWdc/covered stall
+CARPORT_SCENARIOS = {
+    "low": (0.65, 2.00),
+    "likely": (0.80, 2.75),
+    "high": (0.90, 3.40),
+}
+DC_AC_RATIO = 1.25
+NREL_KWDC_PER_ACTUAL_PARKING_ACRE = 263  # published benchmark; actual area unverified
+
+def estimate_solar_mw(row):
+    """MWdc potential from low/likely/high assumed stalls and canopy layouts."""
+    e = estimate(row)
+    low = e["parking_estimate_low"]*CARPORT_SCENARIOS["low"][0]*CARPORT_SCENARIOS["low"][1]/1000
+    base = e["parking_estimate_likely"]*CARPORT_SCENARIOS["likely"][0]*CARPORT_SCENARIOS["likely"][1]/1000
+    high = e["parking_estimate_high"]*CARPORT_SCENARIOS["high"][0]*CARPORT_SCENARIOS["high"][1]/1000
+    return {
+        "solar_mwdc_low": round(low,3),
+        "solar_mwdc_likely": round(base,3),
+        "solar_mwdc_high": round(high,3),
+        "solar_mwac_likely_inverter_only": round(base/DC_AC_RATIO,3),
+        "solar_mwdc_nrel_area_crosscheck": round(e["estimated_parking_field_acres"]*NREL_KWDC_PER_ACTUAL_PARKING_ACRE/1000,3),
+        "solar_sizing_basis": "LOW:65%*2.0; LIKELY:80%*2.75; HIGH:90%*3.40 kWdc per covered stall",
+        "solar_sizing_status": "ROUGH PRELIMINARY ESTIMATE; no verified stalls or engineering",
+    }
