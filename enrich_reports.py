@@ -19,6 +19,7 @@ from shapely.ops import transform, unary_union
 from pyproj import Transformer
 
 from pipeline import ORTHO, METRIC, ACRE_M2, initial_exclusions, norm
+from parking_estimates import estimate, USE_SHARES
 
 OVERPASS = ("https://overpass.kumi.systems/api/interpreter",
             "https://overpass-api.de/api/interpreter")
@@ -165,7 +166,7 @@ def write_xlsx(path, tabs):
             z.writestr(f"xl/worksheets/sheet{i}.xml",xlsx_sheet(rows,widths))
 
 FIELDS=[
-"Rank","Assessor Street Address","Municipality","County","Property Tax Class","Use Code",
+"Rank","Assessor Street Address","Municipality","County","Est Parking Low","Est Parking Likely","Est Parking High","Estimate Source","Estimate Confidence","Assumed Parking Share","Estimated Parking Field Acres","Property Tax Class","Use Code",
 "Parcel Acres","2015 Other Impervious Acres","Largest Other Impervious Piece Acres",
 "OSM-tagged Surface Parking Acres","Largest Mapped Parking Shape Acres",
 "OSM Published Capacity (Unverified)","Verified Parking Stall Count",
@@ -175,12 +176,17 @@ FIELDS=[
 "Parcel ID","Coordinates Lat","Coordinates Lon","Notes / Validation Needed"]
 
 def to_workbook_row(r,i):
+    r.update(estimate(r))
     acres=float(r.get("osm_surface_parking_acres") or 0)
     pavement=float(r.get("largest_other_piece_acres") or 0)
     solar=bool(r.get("osm_solar_feature_ids"))
     score=round(10*acres+min(pavement,10)*1.5+(5 if r.get("osm_parking_capacity_published") else 0)-(10 if solar else 0),1)
     r["priority_index"]=score
-    out=[i,r.get("address",""),r.get("municipality",""),r.get("county",""),r.get("tax_class",""),r.get("property_use",""),
+    e=estimate(r)
+    out=[i,r.get("address",""),r.get("municipality",""),r.get("county",""),
+        e["parking_estimate_low"],e["parking_estimate_likely"],e["parking_estimate_high"],
+        e["parking_estimate_method"],e["parking_estimate_quality"],e["assumed_parking_share"],e["estimated_parking_field_acres"],
+        r.get("tax_class",""),r.get("property_use",""),
         r.get("assessor_acres",""),r.get("candidate_other_acres",""),r.get("largest_other_piece_acres",""),
         acres if acres else "",r.get("osm_largest_parking_polygon_acres","") or "",r.get("osm_parking_capacity_published",""),
         "UNKNOWN",r.get("parking_evidence_level",""),r.get("osm_solar_warning",""),r.get("aerial_image_status",""),r.get("aerial_image_filename",""),
@@ -245,12 +251,14 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
           "aerial_previews":sum(x.get("aerial_image_filename","")!="" for x in enriched),
           "parking_stall_counts_independently_verified":0,
           "notes":"Workbook is a screening list. Ownership and individual stall counts not verified."}
+    meta["preliminary_parking_capacity_estimates"]=sum(1 for rr in enriched if estimate(rr)["parking_estimate_likely"]>0)
+    meta["estimate_method"]="Assumed share of NJDEP Other pavement varies by MOD-IV class/use code, converted at 350/325/300 sqft per stall"
     (report_dir/f"{day}_enrichment_audit.json").write_text(json.dumps(meta,indent=2))
     with (report_dir/f"{day}_enriched_candidates.csv").open("w",encoding="utf-8-sig",newline="") as f:
-        serial=[{k:v for k,v in x.items() if k!="parcel_polygon_geojson"} for x in enriched]
+        serial=[{k:v for k,v in {**x,**estimate(x)}.items() if k!="parcel_polygon_geojson"} for x in enriched]
         writer=csv.DictWriter(f,fieldnames=sorted({k for x in serial for k in x}))
         writer.writeheader();writer.writerows(serial)
-    widths=[8,26,19,16,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54]
+    widths=[8,26,19,16,16,18,16,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54]
     sheet=[FIELDS]+[to_workbook_row(r,i) for i,r in enumerate(enriched,1)]
     methods=[
         ["Field","Explanation"],
@@ -268,7 +276,10 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
         ["Images actually exported",meta["aerial_previews"]],
         ["OSM request failures",meta["osm_query_failures"]],
         ["GIS tiles succeeded",audit.get("succeeded_tiles","")],
-        ["Proxy parking-space numbers","NOT USED as real parking capacity. Avoid deriving spaces from non-parking pavement."],
+        ["Parking space estimates","Low / likely / high desk screening estimates, NOT observed striping or verified existing spaces."],
+        ["Calculation","2015 NJDEP mixed Other impervious acres × assumed parking-share by tax class/use code × 43,560 ÷ 350/325/300 square feet per stall."],
+        ["Uncertainty","2015 Other can include loading, drives, sidewalks, roofs. These are HEURISTIC intervals, not empirically validated statistical confidence intervals."],
+        ["Example retail parking share","48% / 68% / 85% of Other pavement; industrial 12% / 30% / 52%; apartments 32% / 52% / 73%."],
         ["Main GIS source",str(audit.get("source_health",{}).get("NJGIN parcels",{}).get("url",""))],
         ["State map",ORTHO],
         ["Quality limitation","The workbook is a candidate shortlist for manual review, not 20 qualified carport development sites"]
