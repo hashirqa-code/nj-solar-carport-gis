@@ -40,4 +40,4 @@ def test_workbook_column_lengths_and_nonblank_estimates():
     out=to_workbook_row(row,1)
     assert len(out)==len(FIELDS)
     assert out[FIELDS.index("Est Parking Likely")]>=260
-    assert out[FIELDS.index("Verified Parking Stall Count")]=="UNKNOWN"
+    assert out[FIELDS.index("Documented Parking Spaces (if sourced)")]==""
