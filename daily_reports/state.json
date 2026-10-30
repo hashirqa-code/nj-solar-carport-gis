@@ -1,10 +1,34 @@
 {
-  "cursor": 2,
+  "cursor": 4,
   "tile_offsets": {
     "0": 0,
-    "1": 0
+    "1": 0,
+    "2": 12,
+    "3": 12
   },
   "candidate_pool": [],
-  "seen_pins": [],
-  "seen_addresses": []
+  "seen_pins": [
+    "1808_103_8.01",
+    "1808_112_1.01",
+    "1808_125.01_49",
+    "1808_141.01_20.01",
+    "1808_207_9.21",
+    "1808_385_2.08",
+    "1808_88.01_43",
+    "1808_88.01_6.01",
+    "1808_88.01_6.04",
+    "1808_88.01_7.01"
+  ],
+  "seen_addresses": [
+    "1049rt27franklintwp",
+    "1165rt27franklintwp",
+    "1jfkblvdfranklintwp",
+    "41berrystfranklintwp",
+    "55schoolavefranklintwp",
+    "621hamiltonstfranklintwp",
+    "675franklinblvdfranklintwp",
+    "771somersetstfranklintwp",
+    "945rt27franklintwp",
+    "955rt27franklintwp"
+  ]
 }
