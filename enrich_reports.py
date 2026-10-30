@@ -176,7 +176,7 @@ FIELDS=[
 "Parcel ID","Coordinates Lat","Coordinates Lon","Notes / Validation Needed",
 "Utility Proximity (NOT confirmed)","Hosting Grade","Feeder / Circuit","Substation",
 "Map Distance M","Hosting Map Data Date","Hosting Capacity / Est MWac","Hosting Source URL",
-"Map Query Errors","Hosting Interconnection Caveat"]
+"Map Query Errors","Hosting Interconnection Caveat","Utility Map Capacity Band"]
 
 def to_workbook_row(r,i):
     r.update(estimate(r))
@@ -204,7 +204,8 @@ def to_workbook_row(r,i):
         r.get("hosting_utility","UNKNOWN"),r.get("hosting_score","UNKNOWN"),r.get("hosting_feeder",""),
         r.get("hosting_substation",""),r.get("hosting_map_distance_m",""),
         r.get("hosting_date",""),r.get("hosting_capacity_to_project_ratio",""),
-        r.get("hosting_map_source",""),r.get("hosting_check_failures",""),r.get("hosting_caveats","")]
+        r.get("hosting_map_source",""),r.get("hosting_check_failures",""),r.get("hosting_caveats",""),
+        r.get("hosting_capacity_band","")]
     return out
 
 def run(report_dir=Path("daily_reports"),max_imagery=5):
@@ -274,7 +275,7 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
         serial=[{k:v for k,v in {**x,**estimate(x),**estimate_solar_mw(x)}.items() if k!="parcel_polygon_geojson"} for x in enriched]
         writer=csv.DictWriter(f,fieldnames=sorted({k for x in serial for k in x}))
         writer.writeheader();writer.writerows(serial)
-    widths=[8,26,19,16,16,18,16,17,18,17,18,20,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54,20,34,22,20,18,20,21,68,42,80]
+    widths=[8,26,19,16,16,18,16,17,18,17,18,20,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54,20,34,22,20,18,20,21,68,42,80,38]
     sheet=[FIELDS]+[to_workbook_row(r,i) for i,r in enumerate(enriched,1)]
     methods=[
         ["Field","Explanation"],
