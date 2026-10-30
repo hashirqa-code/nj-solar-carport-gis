@@ -17,6 +17,7 @@ import requests
 from pyproj import Transformer
 from shapely.geometry import shape, box, Polygon
 from shapely.ops import transform, unary_union
+from parking_estimates import estimate
 
 PARCEL = "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0"
 PAVEMENT = "https://mapsdep.nj.gov/arcgis/rest/services/Cached_Layers/Rast_impervious_surface_3857/MapServer/0"
@@ -169,7 +170,7 @@ def run(args):
         try:
             subset,total=query_features(PARCEL,area,
                 where="PROP_CLASS IN ('4A','4B','4C','15A','15B','15C','15D') AND CALC_ACRE >= 2",
-                fields="PAMS_PIN,GIS_PIN,PROP_CLASS,PROP_USE,PROP_LOC,MUN_NAME,COUNTY,CALC_ACRE",
+                fields="PAMS_PIN,GIS_PIN,PROP_CLASS,PROP_USE,PROP_LOC,MUN_NAME,COUNTY,CALC_ACRE,FAC_NAME",
                 offset=offset,limit=args.per_tile)
             record["returned_parcels"]=len(subset)
             record["total_intersecting_parcels"]=total
@@ -192,18 +193,24 @@ def run(args):
                     record.setdefault("sample_failures",[])
                     if len(record["sample_failures"])<3:record["sample_failures"].append(str(exc)[:260])
                     continue
-                if p["other_pavement_proxy_equivalent_low"]<args.minimum_proxy: continue
+                classification={"tax_class":attrs.get("PROP_CLASS"),"property_use":attrs.get("PROP_USE"),
+                                "facility_name":attrs.get("FAC_NAME"),**p}
+                scenario=estimate(classification)
+                # Require the likely *parking* approximation to reach the target,
+                # not merely a raw pavement-to-spaces equivalent.
+                if scenario["parking_estimate_likely"]<args.minimum_proxy: continue
+                if str(attrs.get("PROP_USE") or "").strip()=="211": continue # Parking structure, not surface lot
                 geom=shape(parcel["geometry"])
                 row={"parcel_lat":round(geom.representative_point().y,7),"parcel_lon":round(geom.representative_point().x,7),
                      "parcel_polygon_geojson":json.dumps(parcel["geometry"],separators=(",",":")),
                      "address":address,"municipality":city,"county":attrs.get("COUNTY"),
                      "parcel_pin":pin,"tax_class":attrs.get("PROP_CLASS"),
-                     "property_use":attrs.get("PROP_USE"),
+                     "property_use":attrs.get("PROP_USE"),"facility_name":attrs.get("FAC_NAME"),
                      "assessor_acres":attrs.get("CALC_ACRE"),"parking_spaces_verified":"UNKNOWN",
                      "hosting_capacity_mw":"UNKNOWN","existing_solar_status":"NOT CHECKED",
                      "address_status":"ASSESSOR ADDRESS — NOT VERIFIED",
                      "proxy_status":"2015 OTHER PAVEMENT — NOT PARKING STALL COUNT",
-                     "parcel_source":PARCEL,"pavement_source":PAVEMENT,"observed_at":now.isoformat(),**p}
+                     "parcel_source":PARCEL,"pavement_source":PAVEMENT,"observed_at":now.isoformat(),**p,**scenario}
                 candidates.append(row)
                 record["candidates"]+=1
             if record["returned_parcels"] and record["failed_pavement"]==record["returned_parcels"]:
@@ -219,7 +226,7 @@ def run(args):
     state["cursor"]=(cursor+args.tiles)%len(grid) if good else cursor
     state["tile_offsets"]=offsets
     unique={}
-    for row in sorted(candidates,key=lambda r:r["largest_other_piece_acres"],reverse=True):
+    for row in sorted(candidates,key=lambda r:(float(r.get("parking_estimate_likely") or 0),float(r["largest_other_piece_acres"])),reverse=True):
         key=norm(row["address"]+", "+row["municipality"])
         if key in unique:continue
         unique[key]=row
