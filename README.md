@@ -30,3 +30,20 @@ python pipeline.py --out daily_reports --tiles 2 --per-tile 12 --max-results 20
 ```
 
 Review the dated audit before trusting the CSV. Assessor property locations can differ from verified postal street addresses. GIS boundaries are not legal surveys. Hosted GitHub Actions execution does not automatically publish these results into the separate ChatGPT scheduled-task conversation.
+
+## Utility solar-generation hosting-capacity ranking
+
+The weekday pipeline now queries public source GIS for all four New Jersey electric distribution utilities:
+
+| Utility | Source field | Unit & limitation |
+| --- | --- | --- |
+| Atlantic City Electric | `Allowable_PV_kW` | Published feeder solar kW; queued generation displayed separately |
+| Orange & Rockland | `PV_SECTION` | Section-level solar hosting MW; separate `QUEUED_DER` and circuit notes |
+| PSE&G | `TotalAvailabilitySymbol` | Service-point solar capacity in kW, incorporating circuit/station bottleneck |
+| JCP&L | `Remaining` | Transformer proximity and categorical capacity, e.g. `Less than 100 kW AC`; a band is NOT 0 MW |
+
+`hosting_rank.py` searches nearby mapped utility assets within a 400–450 m radius using real parcel coordinates and records source URLs, closest-feature distance, feeder ID (if available), substation, published data date, generation-capacity band/MW and map errors. It compares a nearby generation map signal to the parcel's **modeled MWac** (not MWdc), ranks A/B/C or UNKNOWN, and exports per-property evidence and caveats. A proximity match is **never confirmation of the utility actually serving the site, an approved point of connection, a reserved capacity amount, or interconnection feasibility**.
+
+The verified test on October 30, 2026 matched 19 of 20 newly scanned parcels to nearby JCP&L transformer points labeled **Less than 100 kW AC**; one had no reliable match. This identifies potential interconnection constraints for follow-up but does not establish a feeder-specific rejection. No JCP category under 100 kW is misrepresented as exactly zero.
+
+The hosting step runs before the first fallback spreadsheet export. If a map service fails, its map fields remain UNKNOWN; the workbook retains a failure note. Daily files include `YYYY-MM-DD_hosting_enriched.csv`, `YYYY-MM-DD_hosting_map_matches.csv`, `YYYY-MM-DD_hosting_audit.json`, and the ranked Excel workbook. Ownership remains the user's separate task.
