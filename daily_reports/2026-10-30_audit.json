@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-10-30T16:51:00.260357-04:00",
+  "started_at": "2026-10-30T17:02:32.177941-04:00",
   "source_health": {
     "NJGIN parcels": {
       "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0",
@@ -19,39 +19,39 @@
   },
   "tiles": [
     {
-      "tile": 20,
+      "tile": 24,
       "offset": 0,
       "returned_parcels": 25,
-      "total_intersecting_parcels": 359,
+      "total_intersecting_parcels": 35,
       "failed_pavement": 0,
-      "candidates": 6,
+      "candidates": 0,
       "status": "ok"
     },
     {
-      "tile": 21,
+      "tile": 25,
       "offset": 0,
       "returned_parcels": 25,
-      "total_intersecting_parcels": 1224,
+      "total_intersecting_parcels": 655,
+      "failed_pavement": 0,
+      "candidates": 0,
+      "status": "ok"
+    },
+    {
+      "tile": 26,
+      "offset": 0,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 1651,
+      "failed_pavement": 0,
+      "candidates": 0,
+      "status": "ok"
+    },
+    {
+      "tile": 27,
+      "offset": 0,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 1219,
       "failed_pavement": 0,
       "candidates": 3,
-      "status": "ok"
-    },
-    {
-      "tile": 22,
-      "offset": 0,
-      "returned_parcels": 25,
-      "total_intersecting_parcels": 516,
-      "failed_pavement": 0,
-      "candidates": 4,
-      "status": "ok"
-    },
-    {
-      "tile": 23,
-      "offset": 0,
-      "returned_parcels": 25,
-      "total_intersecting_parcels": 514,
-      "failed_pavement": 0,
-      "candidates": 5,
       "status": "ok"
     }
   ],
@@ -63,8 +63,8 @@
   ],
   "succeeded_tiles": 4,
   "new_provisional_parcels": 20,
-  "all_current_candidates": 43,
-  "remaining_candidates_not_delivered": 23,
-  "next_grid_cursor": 24,
+  "all_current_candidates": 26,
+  "remaining_candidates_not_delivered": 6,
+  "next_grid_cursor": 28,
   "output_type": "PROVISIONAL GIS PARCELS, not qualified solar-carport property leads"
 }

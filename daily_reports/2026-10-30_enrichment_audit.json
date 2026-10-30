@@ -1,8 +1,8 @@
 {
-  "as_of": "2026-10-30T20:54:15.506016+00:00",
+  "as_of": "2026-10-30T21:05:54.147394+00:00",
   "gis_date": "2026-10-30",
   "candidate_count": 20,
-  "osm_query_failures": 9,
+  "osm_query_failures": 10,
   "osm_mapped_parking": 0,
   "aerial_previews": 5,
   "parking_stall_counts_independently_verified": 0,
