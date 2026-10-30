@@ -1,0 +1,10 @@
+{
+  "cursor": 2,
+  "tile_offsets": {
+    "0": 0,
+    "1": 0
+  },
+  "candidate_pool": [],
+  "seen_pins": [],
+  "seen_addresses": []
+}
