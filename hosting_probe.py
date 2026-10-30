@@ -70,6 +70,30 @@ jdata=get("https://www.arcgis.com/sharing/rest/content/items/d43cf2482a344e469ea
 report["maps"]["JCP_app_config"]={"map":jdata.get("map"),"dataSource":jdata.get("dataSource"),
  "url_hints":re.findall(r'https?://[^"\\\\ ]{10,250}(?:FeatureServer|MapServer)(?:/\\d+)?',json.dumps(jdata))[:20]}
 
+# Resolve PSEG solar web map from ArcGIS Experience dataSource IDs
+pseg=get("https://www.arcgis.com/sharing/rest/content/items/c28232df7cad40dfb9cf049c9cb97237/data")
+report["maps"]["PSEG_data_sources"]={"dataSources":pseg.get("dataSources",{})}
+ids=set()
+def search_ids(obj):
+ if isinstance(obj,dict):
+  for k,v in obj.items():
+   if k in ("itemId","webMapId","itemID","portalItemId") and isinstance(v,str) and re.fullmatch(r"[a-f0-9]{32}",v): ids.add(v)
+   search_ids(v)
+ elif isinstance(obj,list):
+  for v in obj:search_ids(v)
+search_ids(pseg)
+for id in list(ids)[:18]:
+ it=get("https://www.arcgis.com/sharing/rest/content/items/"+id)
+ data=get("https://www.arcgis.com/sharing/rest/content/items/"+id+"/data")
+ report["maps"]["PSEG_derived_"+id]={"item":{k:it.get(k) for k in ("id","title","type","url","access","modified","error")},
+   "operationalLayers":[{"title":z.get("title"),"url":z.get("url"),"itemId":z.get("itemId")} for z in data.get("operationalLayers",[])],
+   "url_hints":re.findall(r'https?://[^"\\\\ ]{10,250}(?:FeatureServer|MapServer)(?:/\\d+)?',json.dumps(data))[:20]}
+# JCP webmap operational service references
+it=get("https://www.arcgis.com/sharing/rest/content/items/06e89c8ad9c7441c944861aac5d1e54c")
+data=get("https://www.arcgis.com/sharing/rest/content/items/06e89c8ad9c7441c944861aac5d1e54c/data")
+report["maps"]["JCP_webmap"]={"item":{k:it.get(k) for k in ("id","title","type","url","modified")},
+ "operationalLayers":[{"title":z.get("title"),"url":z.get("url"),"itemId":z.get("itemId")} for z in data.get("operationalLayers",[])]}
+
 for q in ['PSE&G solar suitability map','PSE&G hosting capacity New Jersey','JCP&L solar accommodation map','FirstEnergy New Jersey hosting capacity']:
  d=get("https://www.arcgis.com/sharing/rest/search",{"f":"json","q":q,"num":30},timeout=19)
  report["search"][q]=[{"id":x.get("id"),"title":x.get("title"),"type":x.get("type"),"url":x.get("url"),"modified":x.get("modified")} for x in d.get("results",[])[:12]]
