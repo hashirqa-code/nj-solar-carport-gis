@@ -4,17 +4,20 @@ import json
 import sys
 from pathlib import Path
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from enrich_reports import FIELDS, to_workbook_row, write_xlsx
 
 def run(folder="daily_reports"):
     p=Path(folder)
-    files=sorted(p.glob("*_provisional_parcels.csv"))
-    if not files:raise RuntimeError("No live GIS property CSV; will not invent leads")
-    src=files[-1]
-    day=src.name[:10]
-    with src.open("r",encoding="utf-8-sig",newline="") as f:
-        rows=list(csv.DictReader(f))
-    if not rows:raise RuntimeError("Zero GIS candidates; no workbook to export")
+    day=datetime.now(ZoneInfo("America/New_York")).date().isoformat()
+    src=p/f"{day}_provisional_parcels.csv"
+    if src.exists():
+        with src.open("r",encoding="utf-8-sig",newline="") as f:
+            rows=list(csv.DictReader(f))
+    elif (p/f"{day}_audit.json").exists():
+        rows=[]
+    else:
+        raise RuntimeError(f"No live GIS audit for {day}; won't recycle a stale report")
     for r in rows:
         r["parking_evidence_level"]="PARKING UNKNOWN — NJDEP OTHER PAVEMENT ONLY"
         r["osm_solar_warning"]="NOT CHECKED"
@@ -30,7 +33,7 @@ def run(folder="daily_reports"):
     notes=[
       ["Field","Explanation"],
       ["Source",str(src)],
-      ["Status","PRELIMINARY GIS ONLY — parking and solar checks NOT COMPLETED"],
+      ["Status","PRELIMINARY GIS ONLY — parking and solar checks NOT COMPLETED; zero rows means no new observations today"],
       ["Parking stalls","UNKNOWN. Generic 2015 pavement is not a parking lot."],
       ["Map source","NJGIN MOD-IV 2026 parcels and NJDEP 2015 other impervious"],
       ["Ownership","User verifies independently; blank ownership field by design"],
