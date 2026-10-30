@@ -94,6 +94,21 @@ data=get("https://www.arcgis.com/sharing/rest/content/items/06e89c8ad9c7441c9448
 report["maps"]["JCP_webmap"]={"item":{k:it.get(k) for k in ("id","title","type","url","modified")},
  "operationalLayers":[{"title":z.get("title"),"url":z.get("url"),"itemId":z.get("itemId")} for z in data.get("operationalLayers",[])]}
 
+# Inspect fields and observed value ranges from currently linked first-party map layers.
+for name,url in {
+"PSEG_Generation_Capacity":"https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/1",
+"PSEG_NetMetering_PSP":"https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/0",
+"ACE_2026_samples":sources["ACE_2026"],
+"ORU_segmented_samples":sources["ORU_segmented"],
+}.items():
+ m=get(url)
+ sample=get(url+"/query",{"f":"json","where":"1=1","outFields":"*","returnGeometry":"false","resultRecordCount":4})
+ report["layers"][name]={"url":url,"geometryType":m.get("geometryType"),
+ "lastEditDate":m.get("editingInfo",{}).get("lastEditDate"),
+ "fields":[{"name":y.get("name"),"alias":y.get("alias")} for y in m.get("fields",[])],
+ "samples":[z.get("attributes") for z in sample.get("features",[])],
+ "error":sample.get("error"),"http":m.get("http")}
+
 for q in ['PSE&G solar suitability map','PSE&G hosting capacity New Jersey','JCP&L solar accommodation map','FirstEnergy New Jersey hosting capacity']:
  d=get("https://www.arcgis.com/sharing/rest/search",{"f":"json","q":q,"num":30},timeout=19)
  report["search"][q]=[{"id":x.get("id"),"title":x.get("title"),"type":x.get("type"),"url":x.get("url"),"modified":x.get("modified")} for x in d.get("results",[])[:12]]
