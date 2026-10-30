@@ -76,5 +76,21 @@ jobs:
           git add daily_reports/*_provisional_parcels.csv daily_reports/*_addresses_UNVERIFIED.txt 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Save updated NJ solar carport GIS screening progress"
-            git push
+            # Changes to documentation or other repository files may land during a run.
+            # Rebase the generated report commit; never force-push or overwrite newer state.
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort
+                echo "State conflict: refusing to overwrite another run"
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                echo "GIS progress saved"
+                exit 0
+              fi
+              sleep 3
+            done
+            echo "Unable to save state after three safe retries"
+            exit 1
           fi
