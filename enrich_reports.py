@@ -200,12 +200,18 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
     with source.open(encoding="utf-8-sig",newline="") as f:
         rows=list(csv.DictReader(f))
     seen=set();enriched=[];failures=[]
+    budget_start=time.monotonic()
+    max_osm_seconds=150
+    max_total_seconds=240
     for r in rows:
         key=norm(r.get("address"))+norm(r.get("municipality"))
         if key in seen:continue
         seen.add(key)
         geo=r.get("parcel_polygon_geojson","")
-        if not geo:
+        if geo and time.monotonic()-budget_start>max_osm_seconds:
+            r.update({"parking_evidence_level":"OSM_SKIPPED_TIME_BUDGET","osm_surface_parking_acres":0,
+                      "osm_solar_warning":"NOT CHECKED","osm_status":"SKIPPED_TIME_BUDGET"})
+        elif not geo:
             r.update({"parking_evidence_level":"UNAVAILABLE_NO_PARCEL_GEOMETRY","osm_surface_parking_acres":0,
                        "osm_solar_warning":"UNKNOWN","osm_status":"NOT QUERIED"})
         else:
@@ -226,6 +232,9 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
     aerial_dir=report_dir/"aerial"/day
     aerial_dir.mkdir(parents=True,exist_ok=True)
     for i,r in enumerate(enriched[:max_imagery],1):
+        if time.monotonic()-budget_start>max_total_seconds:
+            r["aerial_image_status"]="SKIPPED_TIME_BUDGET"
+            continue
         if r.get("parcel_lat") and r.get("parcel_lon"):
             fn,status=aerial_export(r,aerial_dir,i)
             r["aerial_image_filename"]=fn
