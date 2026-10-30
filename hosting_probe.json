@@ -539,6 +539,48 @@
         "schemaLastEditDate": 1782391859795,
         "dataLastEditDate": 1782391859795
       }
+    },
+    "JCP_2026_points": {
+      "url": "https://services9.arcgis.com/QhIvHlqYDjdoPWZG/arcgis/rest/services/Solar_Accommodation_Limit_2020/FeatureServer/0",
+      "fields": [
+        {
+          "name": "FID",
+          "alias": "FID"
+        },
+        {
+          "name": "RemainNum",
+          "alias": "RemainNum"
+        },
+        {
+          "name": "Remaining",
+          "alias": "Remaining"
+        }
+      ],
+      "geometryType": "esriGeometryPoint",
+      "lastEditDate": 1782846095616,
+      "samples": [
+        {
+          "FID": 1,
+          "RemainNum": 0,
+          "Remaining": "Less than 100 kW AC"
+        },
+        {
+          "FID": 2,
+          "RemainNum": 0,
+          "Remaining": "Less than 100 kW AC"
+        },
+        {
+          "FID": 3,
+          "RemainNum": 0,
+          "Remaining": "Less than 100 kW AC"
+        },
+        {
+          "FID": 4,
+          "RemainNum": 0,
+          "Remaining": "Less than 100 kW AC"
+        }
+      ],
+      "sampleError": null
     }
   },
   "maps": {
@@ -699,6 +741,90 @@
       "url": "https://firstenergycorp.maps.arcgis.com/apps/webappviewer/index.html?id=d43cf2482a344e469eae6ca569403c24",
       "matched_urls": [],
       "bytes": 6241
+    },
+    "PSEG_Experience": {
+      "item": {
+        "id": "c28232df7cad40dfb9cf049c9cb97237",
+        "title": "HCM Web Portal",
+        "type": "Web Experience",
+        "url": "https://experience.arcgis.com/experience/c28232df7cad40dfb9cf049c9cb97237",
+        "access": "public",
+        "modified": 1789746883000,
+        "error": null
+      },
+      "data_keys": [
+        "pages",
+        "layouts",
+        "exbVersion",
+        "mainSizeMode",
+        "theme",
+        "forBuilderAttributes",
+        "template",
+        "widgets",
+        "widgetsManifest",
+        "views",
+        "sections",
+        "dialogs",
+        "messageConfigs",
+        "attributes",
+        "timestamp",
+        "sharedThemeVariables",
+        "mainLocale",
+        "dataSources",
+        "pageStructure",
+        "permission",
+        "header",
+        "footer",
+        "utilities",
+        "historyLabels",
+        "publishTimestamp"
+      ],
+      "feature_url_hints": [],
+      "item_id_hints": [
+        "fcd47edd0794440690751ff7b1952699",
+        "52596d86241e4c5b9baecb8b5cb013dd",
+        "8ca576ed71834fa1bb35ace7a9861629",
+        "612d3f98d4e84a20945aa25a86fecf0d"
+      ],
+      "data_preview": "{\"pages\": {\"page_5\": {\"id\": \"page_5\", \"mode\": \"FIT_WINDOW\", \"type\": \"NORMAL\", \"layout\": {\"LARGE\": \"layout_22\"}, \"isDefault\": false, \"isVisible\": false, \"label\": \"EV Capacity\", \"header\": true, \"footer\": true}, \"page_6\": {\"id\": \"page_6\", \"mode\": \"FIT_WINDOW\", \"type\": \"NORMAL\", \"layout\": {\"LARGE\": \"layout_34\"}, \"isDefault\": true, \"isVisible\": true, \"label\": \"Solar Capacity\", \"header\": true, \"footer\": true}, \"page_8\": {\"id\": \"page_8\", \"mode\": \"FIT_WINDOW\", \"type\": \"NORMAL\", \"layout\": {\"LARGE\": \"layout_41\"}, \"isDefault\": false, \"isVisible\": true, \"label\": \"Terms of Use & Technical Notes\", \"header\": true, \"footer\": true}}, \"layouts\": {\"layout_20\": {\"content\": {\"0\": {\"type\": \"WIDGET\", \"widgetId\": \"widget_37\", \"bbox\": {\"left\": \"26.1%\", \"right\": \"39.9%\", \"top\": \"37.1%\", \"bottom\": \"33.7%\", \"width\": \"34.0%\", \"height\": \"29.2%\"}, \"setting\": {\"autoProps\": {\"height\": \"AUTO\", \"right\": true, \"left\": false, \"top\": true, \"bottom\": false}, \"vCenter\": false, \"hCenter\": false}}, \"1\": {\"type\": \"WIDGET\", \"widgetId\": \"widget_50\", \"bbox\": {\"left\": \"2.5%\", \"right\": \"84.3%\", \"top\": \"18.2%\", \"bottom\": \"18.2%\", \"width\": \"13.2%\", \"height\": \"63.6%\"}, \"setting\": {\"autoProps\": {\"left\": false, \"right\": true, \"top\": false, \"bottom\": true, \"height\": {}}, \"vCenter\": false, \"hCenter\": false, \"heightMode\": \"fixed\", \"aspectRatio\": 0.23, \"lockLayout\": false, \"lockParent\": true}}, \"2\": {\"type\": \"WIDGET\", \"widgetId\": \"widget_84\", \"bbox\": {\"left\": \"78.5%\", \"right\": \"2.3%\", \"top\": \"33.7%\", \"bottom\": \"17.5%\", \"width\": \"19"
+    },
+    "JCP_app_config": {
+      "map": {
+        "3D": false,
+        "2D": true,
+        "position": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "itemId": "06e89c8ad9c7441c944861aac5d1e54c",
+        "mapOptions": {
+          "extent": {
+            "xmin": -8534347.9843929,
+            "ymin": 4794139.648598681,
+            "xmax": -8069610.852419253,
+            "ymax": 5096524.532494693,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          }
+        },
+        "id": "map",
+        "portalUrl": "https://firstenergycorp.maps.arcgis.com",
+        "appProxy": {
+          "mapItemId": "06e89c8ad9c7441c944861aac5d1e54c",
+          "proxyItems": []
+        },
+        "mapRefreshInterval": {
+          "useWebMapRefreshInterval": true
+        }
+      },
+      "dataSource": {
+        "dataSources": {},
+        "settings": {}
+      },
+      "url_hints": []
     }
   },
   "search": {
