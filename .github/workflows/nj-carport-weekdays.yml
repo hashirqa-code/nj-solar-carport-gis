@@ -8,6 +8,8 @@ on:
       - "pipeline.py"
       - "enrich_reports.py"
       - "fast_export.py"
+      - "parking_estimates.py"
+      - "test_parking_estimates.py"
       - "test_pipeline.py"
       - "test_enrich_reports.py"
       - "requirements.txt"
