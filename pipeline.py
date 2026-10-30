@@ -119,6 +119,8 @@ def tiles():
             arr.append([round(x,5),round(y,5),round(x+0.18,5),round(y+0.16,5)])
             y+=0.16
         x+=0.18
+    # Start near central New Jersey rather than spending the first runs in non-NJ bounding boxes.
+    arr.sort(key=lambda b: abs((b[0]+b[2])/2 + 74.55) + 1.1*abs((b[1]+b[3])/2 - 40.40))
     return arr
 
 def norm(value):
