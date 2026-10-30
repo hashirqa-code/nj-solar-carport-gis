@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "pipeline.py"
+      - "enrich_reports.py"
       - "test_pipeline.py"
       - "requirements.txt"
       - "seed_excluded_addresses.txt"
@@ -56,6 +57,9 @@ jobs:
       - name: Query live NJGIN and NJDEP geometry
         if: steps.gate.outputs.run == 'true'
         run: python pipeline.py --out daily_reports --tiles 4 --per-tile 25 --max-results 20
+      - name: Enrich parking mapping and generate Excel prospect workbook
+        if: steps.gate.outputs.run == 'true'
+        run: python enrich_reports.py
       - name: Upload GIS audit and candidate report
         if: always() && steps.gate.outputs.run == 'true'
         uses: actions/upload-artifact@v4
@@ -65,6 +69,10 @@ jobs:
             daily_reports/*_audit.json
             daily_reports/*_provisional_parcels.csv
             daily_reports/*_addresses_UNVERIFIED.txt
+            daily_reports/*_NJ_solar_carport_prospects.xlsx
+            daily_reports/*_enriched_candidates.csv
+            daily_reports/*_enrichment_audit.json
+            daily_reports/aerial/**/*.jpg
           if-no-files-found: warn
       - name: Persist deduplication state and reports
         if: success() && steps.gate.outputs.run == 'true'
@@ -74,6 +82,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add daily_reports/state.json daily_reports/*_audit.json
           git add daily_reports/*_provisional_parcels.csv daily_reports/*_addresses_UNVERIFIED.txt 2>/dev/null || true
+          git add daily_reports/*_NJ_solar_carport_prospects.xlsx daily_reports/*_enriched_candidates.csv daily_reports/*_enrichment_audit.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Save updated NJ solar carport GIS screening progress"
             # Changes to documentation or other repository files may land during a run.
