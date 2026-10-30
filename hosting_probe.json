@@ -1,0 +1,740 @@
+{
+  "layers": {
+    "ACE_2026": {
+      "url": "https://services3.arcgis.com/agWTKEK7X5K1Bx7o/ArcGIS/rest/services/PHI_Hosting_Capacity10_2_2026/FeatureServer/4",
+      "error": null,
+      "http": null,
+      "id": 4,
+      "name": "ACE",
+      "geometryType": "esriGeometryPolyline",
+      "fields": [
+        {
+          "name": "Region",
+          "alias": "Region",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "State",
+          "alias": "State",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Substation",
+          "alias": "Substation",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "FeederID",
+          "alias": "FeederID",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Allowable_PV_kW",
+          "alias": "Allowable_PV_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Last_Updated",
+          "alias": "Last_Updated",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "Total_Active_Gen_kW",
+          "alias": "Total_Active_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Total_Pending_Gen_kW",
+          "alias": "Total_Pending_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Feeder_InReview_Gen_kW",
+          "alias": "Feeder_InReview_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Transformer_InReview_Gen_kW",
+          "alias": "Transformer_InReview_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Total_Gen_kW",
+          "alias": "Total_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Total_InReview_LargeGen_kW",
+          "alias": "Total_InReview_LargeGen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Feeder_Large_Gen_HC",
+          "alias": "Feeder_Large_Gen_HC",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Transformer_Large_Gen_HC",
+          "alias": "Transformer_Large_Gen_HC",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Voltage",
+          "alias": "Voltage",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "UpdateDate",
+          "alias": "UpdateDate",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "Feeder_DER_Application_Capacity_In_Review",
+          "alias": "Feeder_DER_Application_Capacity_In_Review",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Substation_DER_Application_Capacity_In_Review",
+          "alias": "Substation_DER_Application_Capacity_In_Review",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "OBJECTID",
+          "alias": "OBJECTID",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape__Length",
+          "alias": "Shape__Length",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "editingInfo": {
+        "lastEditDate": 1790964530245,
+        "schemaLastEditDate": 1790964530245,
+        "dataLastEditDate": 1790964530245
+      }
+    },
+    "ORU_segmented": {
+      "url": "https://services.arcgis.com/ciPnsNFi1JLWVjva/ArcGIS/rest/services/ORU_NodalHCV_Prod/FeatureServer/0",
+      "error": null,
+      "http": null,
+      "id": 0,
+      "name": "Hosting Capacity for 3PH Segments",
+      "geometryType": "esriGeometryPolyline",
+      "fields": [
+        {
+          "name": "REGION",
+          "alias": "Operating Company",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "SUBSTATION",
+          "alias": "Substation/Bank Name",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "CIRCUIT",
+          "alias": "Feeder",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "LOCAL_VOLTAGE",
+          "alias": "Local Voltage (kV)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "LOCAL_MAX",
+          "alias": "Local Maximum Hosting Capacity (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "LOCAL_MIN",
+          "alias": "Local Minimum Hosting Capacity (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "ANTI_ISLANDING",
+          "alias": "Anti-Islanding Hosting Capacity (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "CONNECTED_DER",
+          "alias": "Feeder DG Connected (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "QUEUED_DER",
+          "alias": "Feeder DG In Queue (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "SUBSTATION_PROTECTION",
+          "alias": "Substation Backfeed Protection",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "NYISO_LOAD_ZONE",
+          "alias": "NYISO Load Zone",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "HC_REFESH_DATE",
+          "alias": "HCA Refresh Date",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "DER_REFESH_DATE",
+          "alias": "Feeder DG Connected/In Queue Refresh Date",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "DG_ANALYSIS",
+          "alias": "Feeder DG Connected Since Last HCA Refresh Date (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "OBJECTID_1",
+          "alias": "OBJECTID",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "PV_SECTION",
+          "alias": "Section Hosting Capacity",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_BANK_RATING",
+          "alias": "Bank Rating (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_FEEDER_RATING",
+          "alias": "Feeder Rating (MVA)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_FLICKER",
+          "alias": "Flicker Value (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_OVER_VOLTAGE",
+          "alias": "Primary Over-Voltage (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_VOLTAGE_DEVIATION",
+          "alias": "Primary Voltage Deviation (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_REGULATOR_DEVIATION",
+          "alias": "Regulator Deviation (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_THERMAL",
+          "alias": "Thermal from Generation (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_ANTI_ISLAND",
+          "alias": "Anti-Islanding Hosting Capacity Limit (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "CONSTRUCTIONTYPE",
+          "alias": "Cable Type",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "SystemData",
+          "alias": "System Data",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "NOTES",
+          "alias": "Notes",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Shape__Length",
+          "alias": "Shape__Length",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "editingInfo": {
+        "lastEditDate": 1790887063916,
+        "schemaLastEditDate": 1790887063916,
+        "dataLastEditDate": 1790887063916
+      }
+    },
+    "ORU_combined": {
+      "url": "https://services.arcgis.com/ciPnsNFi1JLWVjva/ArcGIS/rest/services/IEDR_ORU/FeatureServer/10",
+      "error": null,
+      "http": null,
+      "id": 10,
+      "name": "Hosting Capacity for 3PH Segments",
+      "geometryType": "esriGeometryPolyline",
+      "fields": [
+        {
+          "name": "REGION",
+          "alias": "Operating Company",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "SUBSTATION",
+          "alias": "Substation/Bank Name",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "CIRCUIT",
+          "alias": "Feeder",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "LOCAL_VOLTAGE",
+          "alias": "Local Voltage (kV)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "LOCAL_MAX",
+          "alias": "Local Maximum Hosting Capacity (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "LOCAL_MIN",
+          "alias": "Local Minimum Hosting Capacity (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "ANTI_ISLANDING",
+          "alias": "Anti-Islanding Hosting Capacity (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "CONNECTED_DER",
+          "alias": "Feeder DG Connected (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "QUEUED_DER",
+          "alias": "Feeder DG In Queue (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "SUBSTATION_PROTECTION",
+          "alias": "Substation Backfeed Protection",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "NYISO_LOAD_ZONE",
+          "alias": "NYISO Load Zone",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "HC_REFESH_DATE",
+          "alias": "HCA Refresh Date",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "DER_REFESH_DATE",
+          "alias": "Feeder DG Connected/In Queue Refresh Date",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "DG_ANALYSIS",
+          "alias": "Feeder DG Connected Since Last HCA Refresh Date (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "OBJECTID_1",
+          "alias": "OBJECTID",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "PV_SECTION",
+          "alias": "Section Hosting Capacity",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_BANK_RATING",
+          "alias": "Bank Rating (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_FEEDER_RATING",
+          "alias": "Feeder Rating (MVA)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_FLICKER",
+          "alias": "Flicker Value (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_OVER_VOLTAGE",
+          "alias": "Primary Over-Voltage (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_VOLTAGE_DEVIATION",
+          "alias": "Primary Voltage Deviation (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_REGULATOR_DEVIATION",
+          "alias": "Regulator Deviation (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_THERMAL",
+          "alias": "Thermal from Generation (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "PV_ANTI_ISLAND",
+          "alias": "Anti-Islanding Hosting Capacity Limit (MW)",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "CONSTRUCTIONTYPE",
+          "alias": "Cable Type",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "SystemData",
+          "alias": "System Data",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "NOTES",
+          "alias": "Notes",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Shape__Length",
+          "alias": "Shape__Length",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "editingInfo": {
+        "lastEditDate": 1790892358231,
+        "schemaLastEditDate": 1790892358231,
+        "dataLastEditDate": 1790892358231
+      }
+    },
+    "ACE_prior": {
+      "url": "https://services3.arcgis.com/agWTKEK7X5K1Bx7o/arcgis/rest/services/PHI_Hosting_Capacity_Public/FeatureServer/4",
+      "error": null,
+      "http": null,
+      "id": 4,
+      "name": "ACE",
+      "geometryType": "esriGeometryPolyline",
+      "fields": [
+        {
+          "name": "Region",
+          "alias": "Region",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "State",
+          "alias": "State",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Substation",
+          "alias": "Substation",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "FeederID",
+          "alias": "FeederID",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Allowable_PV_kW",
+          "alias": "Allowable_PV_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Last_Updated",
+          "alias": "Last_Updated",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "Total_Active_Gen_kW",
+          "alias": "Total_Active_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Total_Pending_Gen_kW",
+          "alias": "Total_Pending_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Feeder_InReview_Gen_kW",
+          "alias": "Feeder_InReview_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Transformer_InReview_Gen_kW",
+          "alias": "Transformer_InReview_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Total_Gen_kW",
+          "alias": "Total_Gen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Total_InReview_LargeGen_kW",
+          "alias": "Total_InReview_LargeGen_kW",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Feeder_Large_Gen_HC",
+          "alias": "Feeder_Large_Gen_HC",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Transformer_Large_Gen_HC",
+          "alias": "Transformer_Large_Gen_HC",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "Voltage",
+          "alias": "Voltage",
+          "type": "esriFieldTypeDouble"
+        },
+        {
+          "name": "UpdateDate",
+          "alias": "UpdateDate",
+          "type": "esriFieldTypeDate"
+        },
+        {
+          "name": "Feeder_DER_Application_Capacity_In_Review",
+          "alias": "Feeder_DER_Application_Capacity_In_Review",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "Substation_DER_Application_Capacity_In_Review",
+          "alias": "Substation_DER_Application_Capacity_In_Review",
+          "type": "esriFieldTypeString"
+        },
+        {
+          "name": "OBJECTID",
+          "alias": "OBJECTID",
+          "type": "esriFieldTypeOID"
+        },
+        {
+          "name": "Shape__Length",
+          "alias": "Shape__Length",
+          "type": "esriFieldTypeDouble"
+        }
+      ],
+      "editingInfo": {
+        "lastEditDate": 1782391859795,
+        "schemaLastEditDate": 1782391859795,
+        "dataLastEditDate": 1782391859795
+      }
+    }
+  },
+  "maps": {
+    "JCP_app": {
+      "item": {
+        "id": "d43cf2482a344e469eae6ca569403c24",
+        "title": "Available Capacity",
+        "type": "Web Mapping Application",
+        "url": "https://firstenergycorp.maps.arcgis.com/apps/webappviewer/index.html?id=d43cf2482a344e469eae6ca569403c24",
+        "access": "public",
+        "owner": "josefarv",
+        "modified": 1782847899000,
+        "error": null
+      },
+      "data_keys": [
+        "theme",
+        "portalUrl",
+        "appId",
+        "authorizedCrossOriginDomains",
+        "title",
+        "subtitle",
+        "keepAppState",
+        "logo",
+        "geometryService",
+        "links",
+        "widgetOnScreen",
+        "map",
+        "widgetPool",
+        "mobileLayout",
+        "loadingPage",
+        "wabVersion",
+        "_buildInfo",
+        "isWebTier",
+        "httpProxy",
+        "dataSource",
+        "logoLink",
+        "appItemId"
+      ],
+      "operationalLayers": [],
+      "map": {
+        "3D": false,
+        "2D": true,
+        "position": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "itemId": "06e89c8ad9c7441c944861aac5d1e54c",
+        "mapOptions": {
+          "extent": {
+            "xmin": -8534347.9843929,
+            "ymin": 4794139.648598681,
+            "xmax": -8069610.852419253,
+            "ymax": 5096524.532494693,
+            "spatialReference": {
+              "wkid": 102100
+            }
+          }
+        },
+        "id": "map",
+        "portalUrl": "https://firstenergycorp.maps.arcgis.com",
+        "appProxy": {
+          "mapItemId": "06e89c8ad9c7441c944861aac5d1e54c",
+          "proxyItems": []
+        },
+        "mapRefreshInterval": {
+          "useWebMapRefreshInterval": true
+        }
+      },
+      "data_error": null
+    },
+    "JCP_older": {
+      "item": {
+        "id": "546e9834416b42aba00b30ce6f59cc5f",
+        "title": "Solar Accommodation Limit 2020",
+        "type": "Feature Service",
+        "url": "https://services9.arcgis.com/QhIvHlqYDjdoPWZG/arcgis/rest/services/Solar_Accommodation_Limit_2020/FeatureServer",
+        "access": "public",
+        "owner": "josefarv",
+        "modified": 1782846128000,
+        "error": null
+      },
+      "data_keys": [
+        "error"
+      ],
+      "operationalLayers": [],
+      "map": null,
+      "data_error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    "PSEG_older": {
+      "item": {
+        "id": null,
+        "title": null,
+        "type": null,
+        "url": null,
+        "access": null,
+        "owner": null,
+        "modified": null,
+        "error": {
+          "code": 400,
+          "messageCode": "CONT_0001",
+          "message": "Item does not exist or is inaccessible.",
+          "details": []
+        }
+      },
+      "data_keys": [
+        "error"
+      ],
+      "operationalLayers": [],
+      "map": null,
+      "data_error": {
+        "code": 400,
+        "messageCode": "CONT_0001",
+        "message": "Item does not exist or is inaccessible.",
+        "details": []
+      }
+    },
+    "ACE_older": {
+      "item": {
+        "id": null,
+        "title": null,
+        "type": null,
+        "url": null,
+        "access": null,
+        "owner": null,
+        "modified": null,
+        "error": {
+          "code": 403,
+          "messageCode": "GWM_0003",
+          "message": "You do not have permissions to access this resource or perform this operation.",
+          "details": []
+        }
+      },
+      "data_keys": [
+        "error"
+      ],
+      "operationalLayers": [],
+      "map": null,
+      "data_error": {
+        "code": 403,
+        "messageCode": "GWM_0003",
+        "message": "You do not have permissions to access this resource or perform this operation.",
+        "details": []
+      }
+    },
+    "PSEG_web": {
+      "http": 200,
+      "url": "https://nj.pseg.com/saveenergyandmoney/solarandrenewableenergy/solarpowersustanibility",
+      "matched_urls": [
+        "https://experience.arcgis.com/experience/c28232df7cad40dfb9cf049c9cb97237/",
+        "https://experience.arcgis.com/experience/c28232df7cad40dfb9cf049c9cb97237/"
+      ],
+      "bytes": 278229
+    },
+    "JCP_app_page": {
+      "http": 200,
+      "url": "https://firstenergycorp.maps.arcgis.com/apps/webappviewer/index.html?id=d43cf2482a344e469eae6ca569403c24",
+      "matched_urls": [],
+      "bytes": 6241
+    }
+  },
+  "search": {
+    "PSE&G solar suitability map": [
+      {
+        "id": "577ed5e15df44c3db5b60351eaa9b50c",
+        "title": "NJ Churches Over 10000 SqFt Solar Suitability Map",
+        "type": "Feature Service",
+        "url": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/arcgis/rest/services/NJ_Churches_Over_10000_SqFt_Solar_Suitability_Map_WFL1/FeatureServer",
+        "modified": 1701455801000
+      },
+      {
+        "id": "5f31013f42c648cb8b72e54dcf9db4d4",
+        "title": "Energy Saturation Map 2.0",
+        "type": "Web Map",
+        "url": "",
+        "modified": 1764777233000
+      },
+      {
+        "id": "ce144fb3985a425e8e1d23f4915cfa51",
+        "title": "EVCapacityMap",
+        "type": "Web Map",
+        "url": "",
+        "modified": 1764777313000
+      }
+    ],
+    "PSE&G hosting capacity New Jersey": [],
+    "JCP&L solar accommodation map": [],
+    "FirstEnergy New Jersey hosting capacity": [
+      {
+        "id": "546e9834416b42aba00b30ce6f59cc5f",
+        "title": "Solar Accommodation Limit 2020",
+        "type": "Feature Service",
+        "url": "https://services9.arcgis.com/QhIvHlqYDjdoPWZG/arcgis/rest/services/Solar_Accommodation_Limit_2020/FeatureServer",
+        "modified": 1782846128000
+      }
+    ]
+  }
+}
