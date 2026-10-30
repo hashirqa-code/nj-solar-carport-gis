@@ -29,8 +29,8 @@ USE_SHARES = {
 RETAIL_CODES = {"731","732","733","734","735","736","737","738"}
 OFFICE_CODES = {"560","561","563","564","565","566"}
 MEDICAL_CODES = {"271","562"}
-PARKING_CODES = {"211","212"}
-WAREHOUSE_CODES = {"950","951","952","953","954"}
+PARKING_CODES = {"212"}
+WAREHOUSE_CODES = {"330","331","950","951","952","953","954","959","790","791"}
 INSTITUTION_CODES = {"660","661","662","663","664","665","666","667","668","669"}
 
 def n(value):
@@ -44,6 +44,9 @@ def land_use_group(row):
     use=str(row.get("property_use") or "").strip()
     # Leading zeros are preserved for raw tax codes such as 029.
     tax=str(row.get("tax_class") or "").strip().upper()
+    facility=str(row.get("facility_name") or "").upper()
+    if "CEMETERY" in facility or "GOLF COURSE" in facility or "PARKLAND" in facility:
+        return "industrial"  # low proxy parking allocation; amenities/roads often dominate
     if use in PARKING_CODES:return "parking_only"
     if use in RETAIL_CODES:return "retail"
     if use in MEDICAL_CODES:return "medical"
