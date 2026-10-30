@@ -1,0 +1,42 @@
+name: Hosting Capacity Source Probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["hosting_probe.py", ".github/workflows/hosting-source-probe.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: nj-hc-probe
+  cancel-in-progress: true
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install requests
+      - name: Probe public feeder hosting maps
+        run: python hosting_probe.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nj-hosting-source-probe
+          path: hosting_probe.json
+      - name: Commit probe metadata
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hosting_probe.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record live NJ hosting capacity map endpoints"
+            for try in 1 2 3; do
+              git fetch origin main
+              git rebase origin/main || exit 1
+              git push origin HEAD:main && exit 0
+              sleep 2
+            done
+            exit 1
+          fi
