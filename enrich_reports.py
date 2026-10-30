@@ -173,7 +173,10 @@ FIELDS=[
 "Parking Evidence","Solar Warning","2020 Aerial Image Status","Aerial Image Filename",
 "Utility Hosting MW","Property Ownership — USER TO VERIFY","Candidate Priority",
 "Source NJGIN Parcel","Source NJDEP Pavement","OSM Parking Features","OSM Solar Features",
-"Parcel ID","Coordinates Lat","Coordinates Lon","Notes / Validation Needed"]
+"Parcel ID","Coordinates Lat","Coordinates Lon","Notes / Validation Needed",
+"Utility Proximity (NOT confirmed)","Hosting Grade","Feeder / Circuit","Substation",
+"Map Distance M","Hosting Map Data Date","Hosting Capacity / Est MWac","Hosting Source URL",
+"Map Query Errors","Hosting Interconnection Caveat"]
 
 def to_workbook_row(r,i):
     r.update(estimate(r))
@@ -193,10 +196,15 @@ def to_workbook_row(r,i):
         r.get("assessor_acres",""),r.get("candidate_other_acres",""),r.get("largest_other_piece_acres",""),
         acres if acres else "",r.get("osm_largest_parking_polygon_acres","") or "",r.get("osm_parking_capacity_published",""),
         "",r.get("parking_evidence_level",""),r.get("osm_solar_warning",""),r.get("aerial_image_status",""),r.get("aerial_image_filename",""),
-        "UNKNOWN","","A — OSM parking mapped" if acres>=1 and not solar else "B — GIS lead, review",
+        r.get("hosting_map_mw") if r.get("hosting_map_mw") not in ("",None) else "UNKNOWN",
+        "","A — OSM parking mapped" if acres>=1 and not solar else "B — GIS lead, review",
         r.get("parcel_source",""),r.get("pavement_source",""),r.get("osm_parking_feature_ids",""),r.get("osm_solar_feature_ids",""),
         r.get("parcel_pin",""),r.get("parcel_lat",""),r.get("parcel_lon",""),
-        "Do not rely on 2015 pavement as parking; verify current stripes, roof/road/truck use, site ownership, solar plans and utility"]
+        "Do not rely on 2015 pavement as parking; verify current stripes, roof/road/truck use, site ownership, solar plans and utility",
+        r.get("hosting_utility","UNKNOWN"),r.get("hosting_score","UNKNOWN"),r.get("hosting_feeder",""),
+        r.get("hosting_substation",""),r.get("hosting_map_distance_m",""),
+        r.get("hosting_date",""),r.get("hosting_capacity_to_project_ratio",""),
+        r.get("hosting_map_source",""),r.get("hosting_check_failures",""),r.get("hosting_caveats","")]
     return out
 
 def run(report_dir=Path("daily_reports"),max_imagery=5):
@@ -204,7 +212,8 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
     audits=sorted(report_dir.glob("*_audit.json"))
     if not audits:raise RuntimeError("No live GIS audit available")
     day=audits[-1].name[:10]
-    source=report_dir/f"{day}_provisional_parcels.csv"
+    source=report_dir/f"{day}_hosting_enriched.csv"
+    if not source.exists():source=report_dir/f"{day}_provisional_parcels.csv"
     if not source.exists():raise RuntimeError(f"No GIS candidate CSV for {day}")
     with source.open(encoding="utf-8-sig",newline="") as f:
         rows=list(csv.DictReader(f))
@@ -236,8 +245,12 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
         r["aerial_image_status"]="NOT YET CHECKED"
         r["aerial_image_filename"]=""
         enriched.append(r)
-    enriched.sort(key=lambda x:(float(x.get("osm_surface_parking_acres") or 0),
-                                float(x.get("largest_other_piece_acres") or 0)),reverse=True)
+    enriched.sort(key=lambda x:(
+        3 if str(x.get("hosting_score","")).startswith("A") else
+        2 if str(x.get("hosting_score","")).startswith("B") else
+        1 if str(x.get("hosting_score","")).startswith("C") else 0,
+        estimate_solar_mw(x)["solar_mwdc_likely"],
+        float(x.get("osm_surface_parking_acres") or 0)),reverse=True)
     aerial_dir=report_dir/"aerial"/day
     aerial_dir.mkdir(parents=True,exist_ok=True)
     for i,r in enumerate(enriched[:max_imagery],1):
@@ -261,7 +274,7 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
         serial=[{k:v for k,v in {**x,**estimate(x),**estimate_solar_mw(x)}.items() if k!="parcel_polygon_geojson"} for x in enriched]
         writer=csv.DictWriter(f,fieldnames=sorted({k for x in serial for k in x}))
         writer.writeheader();writer.writerows(serial)
-    widths=[8,26,19,16,16,18,16,17,18,17,18,20,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54]
+    widths=[8,26,19,16,16,18,16,17,18,17,18,20,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54,20,34,22,20,18,20,21,68,42,80]
     sheet=[FIELDS]+[to_workbook_row(r,i) for i,r in enumerate(enriched,1)]
     methods=[
         ["Field","Explanation"],
@@ -272,7 +285,11 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
         ["OSM capacity","Volunteered open map tag; not verified stall count"],
         ["Aerial previews","NJ official 2020 orthophoto; imagery only, no model-verified stall count"],
         ["Existing solar","OSM tags can FLAG solar; absence does not establish no existing panels"],
-        ["Utility hosting capacity","Unknown until verified at exact feeder/point"],
+        ["Utility hosting","Nearest public PV generation map feature within 400–450 m; this is NOT the verified serving feeder or connection point."],
+        ["Comparative sizing","Map capacity in approximate MWac; carport capacity is modeled MWac via a 1.25 DC/AC ratio."],
+        ["Four utilities","ACE Allowable_PV_kW; O&R PV_SECTION; PSE&G TotalAvailabilitySymbol; JCP&L Remaining category."],
+        ["Rank quality","A/B/C are proximity screening only, not utility approvals or definitive feasibility."],
+        ["Source evidence","Hosting URL, nearest-feature distance, feeder ID, map date and caveats recorded per parcel."],
         ["Ownership","Intentionally blank for user's separate verification"],
         ["First-stage results",len(enriched)],
         ["OSM-backed parking polygons",meta["osm_mapped_parking"]],
