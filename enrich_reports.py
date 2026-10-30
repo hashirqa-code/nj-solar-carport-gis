@@ -19,7 +19,7 @@ from shapely.ops import transform, unary_union
 from pyproj import Transformer
 
 from pipeline import ORTHO, METRIC, ACRE_M2, initial_exclusions, norm
-from parking_estimates import estimate, USE_SHARES
+from parking_estimates import estimate, estimate_solar_mw, USE_SHARES
 
 OVERPASS = ("https://overpass.kumi.systems/api/interpreter",
             "https://overpass-api.de/api/interpreter")
@@ -166,7 +166,7 @@ def write_xlsx(path, tabs):
             z.writestr(f"xl/worksheets/sheet{i}.xml",xlsx_sheet(rows,widths))
 
 FIELDS=[
-"Rank","Assessor Street Address","Municipality","County","Est Parking Low","Est Parking Likely","Est Parking High","Estimate Source","Estimate Confidence","Assumed Parking Share","Estimated Parking Field Acres","Property Tax Class","Use Code",
+"Rank","Assessor Street Address","Municipality","County","Est Parking Low","Est Parking Likely","Est Parking High","Carport MWdc Low","Carport MWdc Likely","Carport MWdc High","Carport MWac Likely","NREL Area Benchmark MWdc","Estimate Source","Estimate Confidence","Assumed Parking Share","Estimated Parking Field Acres","Property Tax Class","Use Code",
 "Parcel Acres","2015 Other Impervious Acres","Largest Other Impervious Piece Acres",
 "OSM-tagged Surface Parking Acres","Largest Mapped Parking Shape Acres",
 "OSM Published Capacity (Unverified)","Documented Parking Spaces (if sourced)",
@@ -183,8 +183,11 @@ def to_workbook_row(r,i):
     score=round(10*acres+min(pavement,10)*1.5+(5 if r.get("osm_parking_capacity_published") else 0)-(10 if solar else 0),1)
     r["priority_index"]=score
     e=estimate(r)
+    solar=estimate_solar_mw(r)
     out=[i,r.get("address",""),r.get("municipality",""),r.get("county",""),
         e["parking_estimate_low"],e["parking_estimate_likely"],e["parking_estimate_high"],
+        solar["solar_mwdc_low"],solar["solar_mwdc_likely"],solar["solar_mwdc_high"],
+        solar["solar_mwac_likely_inverter_only"],solar["solar_mwdc_nrel_area_crosscheck"],
         e["parking_estimate_method"],e["parking_estimate_quality"],e["assumed_parking_share"],e["estimated_parking_field_acres"],
         r.get("tax_class",""),r.get("property_use",""),
         r.get("assessor_acres",""),r.get("candidate_other_acres",""),r.get("largest_other_piece_acres",""),
@@ -255,10 +258,10 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
     meta["estimate_method"]="Assumed share of NJDEP Other pavement varies by MOD-IV class/use code, converted at 350/325/300 sqft per stall"
     (report_dir/f"{day}_enrichment_audit.json").write_text(json.dumps(meta,indent=2))
     with (report_dir/f"{day}_enriched_candidates.csv").open("w",encoding="utf-8-sig",newline="") as f:
-        serial=[{k:v for k,v in {**x,**estimate(x)}.items() if k!="parcel_polygon_geojson"} for x in enriched]
+        serial=[{k:v for k,v in {**x,**estimate(x),**estimate_solar_mw(x)}.items() if k!="parcel_polygon_geojson"} for x in enriched]
         writer=csv.DictWriter(f,fieldnames=sorted({k for x in serial for k in x}))
         writer.writeheader();writer.writerows(serial)
-    widths=[8,26,19,16,16,18,16,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54]
+    widths=[8,26,19,16,16,18,16,17,18,17,18,20,38,45,18,20,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54]
     sheet=[FIELDS]+[to_workbook_row(r,i) for i,r in enumerate(enriched,1)]
     methods=[
         ["Field","Explanation"],
@@ -277,6 +280,10 @@ def run(report_dir=Path("daily_reports"),max_imagery=5):
         ["OSM request failures",meta["osm_query_failures"]],
         ["GIS tiles succeeded",audit.get("succeeded_tiles","")],
         ["Parking space estimates","Low / likely / high desk screening estimates, NOT observed striping or verified existing spaces."],
+        ["Canopy MWdc scenarios","Low stall count * 65% coverage * 2.0 kW; likely * 80% * 2.75; high * 90% * 3.4. All three are SCREENING scenarios."],
+        ["AC estimate","MWdc / 1.25 assumed DC/AC sizing ratio, not an approved interconnection export limit."],
+        ["NREL acreage cross-check","263 kWdc per measured acre of actual parking. Applied here to MODEL-ESTIMATED parking acres, not measured stalls."],
+        ["NREL methodology URL","https://www.nlr.gov/docs/fy24osti/90070.pdf"],
         ["Calculation","2015 NJDEP mixed Other impervious acres × assumed parking-share by tax class/use code × 43,560 ÷ 350/325/300 square feet per stall."],
         ["Uncertainty","2015 Other can include loading, drives, sidewalks, roofs. These are HEURISTIC intervals, not empirically validated statistical confidence intervals."],
         ["Example retail parking share","48% / 68% / 85% of Other pavement; industrial 12% / 30% / 52%; apartments 32% / 52% / 73%."],
