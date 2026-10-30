@@ -25,9 +25,20 @@ OVERPASS = ("https://overpass.kumi.systems/api/interpreter",
 SESSION = requests.Session()
 SESSION.headers["User-Agent"]="NJ-Carport-Research/1.0 (public data; small geographic queries)"
 
+_OSM_CACHE = {}
 def osm_query(bounds):
+    # Group nearby parcels into approximately 2.1 km OSM request tiles. This
+    # avoids hammering public Overpass servers with one query per property.
     west,south,east,north = bounds
-    pad = .001
+    grid_x=math.floor(((west+east)/2)*40)
+    grid_y=math.floor(((south+north)/2)*40)
+    key=(grid_x,grid_y)
+    if key in _OSM_CACHE:return _OSM_CACHE[key]
+    pad=.004
+    west=grid_x/40
+    east=(grid_x+1)/40
+    south=grid_y/40
+    north=(grid_y+1)/40
     b=f"{south-pad:.7f},{west-pad:.7f},{north+pad:.7f},{east+pad:.7f}"
     q=f'[out:json][timeout:20];(way["amenity"="parking"]({b});way["power"="generator"]["generator:source"="solar"]({b});way["power"="plant"]["plant:source"="solar"]({b});way["generator:source"="solar"]({b}););out geom;'
     errors=[]
@@ -37,10 +48,14 @@ def osm_query(bounds):
             r.raise_for_status()
             d=r.json()
             if "elements" not in d:raise ValueError("No elements field")
-            return d["elements"],endpoint,"OK"
+            result=(d["elements"],endpoint,"OK")
+            _OSM_CACHE[key]=result
+            return result
         except (requests.RequestException,ValueError) as exc:
             errors.append(f"{endpoint}: {str(exc)[:110]}")
-    return [],"","ERROR: "+"; ".join(errors)
+    result=([],"","ERROR: "+"; ".join(errors))
+    _OSM_CACHE[key]=result
+    return result
 
 def way_polygon(element):
     pts=element.get("geometry",[])
