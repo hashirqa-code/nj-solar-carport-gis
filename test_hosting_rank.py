@@ -54,3 +54,14 @@ def test_nearest_feeder_is_used_not_highest_distant_feeder():
     x=h.rank(r,[a,b],[])
     assert x["hosting_feeder"]=="F1"
     assert x["hosting_map_mw"]==0.1
+
+def test_jcpl_low_category_not_misreported_as_zero_mw():
+    r={"candidate_other_acres":4,"tax_class":"4A","property_use":"733"}
+    m=[{"utility":"JCPL","utility_name":"JCP&L","hosting_screen_mw":0.0,
+        "distance_m":120,"feeder":"","station":"","map_refresh":"2026-06-30",
+        "evidence":"JCP&L transformer map category: Less than 100 kW AC; numeric field is CONSERVATIVE category lower bound only",
+        "queued_raw":None,"layer":h.JCPL,"feature_id":"10","geometry_kind":"Point"}]
+    x=h.rank(r,m,[])
+    assert x["hosting_map_mw"]=="<0.1 MWac"
+    assert "NOT ZERO" in x["hosting_score"]
+    assert "Less than 100" in x["hosting_capacity_band"]
