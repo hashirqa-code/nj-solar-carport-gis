@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-10-30T15:44:10.013407-04:00",
+  "started_at": "2026-10-30T15:47:08.565291-04:00",
   "source_health": {
     "NJGIN parcels": {
       "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0",
@@ -19,39 +19,39 @@
   },
   "tiles": [
     {
-      "tile": 4,
+      "tile": 8,
       "offset": 0,
       "returned_parcels": 25,
-      "total_intersecting_parcels": 657,
+      "total_intersecting_parcels": 1800,
       "failed_pavement": 0,
-      "candidates": 3,
+      "candidates": 10,
       "status": "ok"
     },
     {
-      "tile": 5,
+      "tile": 9,
       "offset": 0,
       "returned_parcels": 25,
-      "total_intersecting_parcels": 1002,
+      "total_intersecting_parcels": 1086,
       "failed_pavement": 0,
       "candidates": 6,
       "status": "ok"
     },
     {
-      "tile": 6,
+      "tile": 10,
       "offset": 0,
       "returned_parcels": 25,
-      "total_intersecting_parcels": 523,
+      "total_intersecting_parcels": 601,
       "failed_pavement": 0,
       "candidates": 7,
       "status": "ok"
     },
     {
-      "tile": 7,
+      "tile": 11,
       "offset": 0,
       "returned_parcels": 25,
-      "total_intersecting_parcels": 1341,
+      "total_intersecting_parcels": 707,
       "failed_pavement": 0,
-      "candidates": 9,
+      "candidates": 11,
       "status": "ok"
     }
   ],
@@ -63,8 +63,8 @@
   ],
   "succeeded_tiles": 4,
   "new_provisional_parcels": 20,
-  "all_current_candidates": 25,
-  "remaining_candidates_not_delivered": 5,
-  "next_grid_cursor": 8,
+  "all_current_candidates": 39,
+  "remaining_candidates_not_delivered": 19,
+  "next_grid_cursor": 12,
   "output_type": "PROVISIONAL GIS PARCELS, not qualified solar-carport property leads"
 }
