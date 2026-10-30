@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-10-30T15:42:46.822958-04:00",
+  "started_at": "2026-10-30T15:44:10.013407-04:00",
   "source_health": {
     "NJGIN parcels": {
       "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0",
@@ -19,21 +19,39 @@
   },
   "tiles": [
     {
-      "tile": 2,
+      "tile": 4,
       "offset": 0,
-      "returned_parcels": 12,
-      "total_intersecting_parcels": 1675,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 657,
       "failed_pavement": 0,
-      "candidates": 10,
+      "candidates": 3,
       "status": "ok"
     },
     {
-      "tile": 3,
+      "tile": 5,
       "offset": 0,
-      "returned_parcels": 12,
-      "total_intersecting_parcels": 1342,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 1002,
       "failed_pavement": 0,
-      "candidates": 0,
+      "candidates": 6,
+      "status": "ok"
+    },
+    {
+      "tile": 6,
+      "offset": 0,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 523,
+      "failed_pavement": 0,
+      "candidates": 7,
+      "status": "ok"
+    },
+    {
+      "tile": 7,
+      "offset": 0,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 1341,
+      "failed_pavement": 0,
+      "candidates": 9,
       "status": "ok"
     }
   ],
@@ -43,10 +61,10 @@
     "No present-day parking layout, utility hosting, existing solar, ownership, flood or wetlands validation.",
     "PROP_LOC is an assessor address, not a USPS-verified delivery address."
   ],
-  "succeeded_tiles": 2,
-  "new_provisional_parcels": 10,
-  "all_current_candidates": 10,
-  "remaining_candidates_not_delivered": 0,
-  "next_grid_cursor": 4,
+  "succeeded_tiles": 4,
+  "new_provisional_parcels": 20,
+  "all_current_candidates": 25,
+  "remaining_candidates_not_delivered": 5,
+  "next_grid_cursor": 8,
   "output_type": "PROVISIONAL GIS PARCELS, not qualified solar-carport property leads"
 }
