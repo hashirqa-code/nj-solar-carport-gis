@@ -55,7 +55,7 @@ jobs:
         run: python -m pytest -q
       - name: Query live NJGIN and NJDEP geometry
         if: steps.gate.outputs.run == 'true'
-        run: python pipeline.py --out daily_reports --tiles 2 --per-tile 12 --max-results 20
+        run: python pipeline.py --out daily_reports --tiles 4 --per-tile 25 --max-results 20
       - name: Upload GIS audit and candidate report
         if: always() && steps.gate.outputs.run == 'true'
         uses: actions/upload-artifact@v4
