@@ -127,7 +127,7 @@ def norm(value):
 def initial_exclusions(filename):
     p=Path(filename)
     if not p.exists(): return set()
-    return {norm(line) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()}
+    return {norm(line.split(",")[0]) for line in p.read_text(encoding="utf-8").splitlines() if line.strip()}
 
 def save_csv(filename,rows):
     if not rows:return
@@ -157,7 +157,7 @@ def run(args):
     seen_addresses=set(state.get("seen_addresses",[]))
     exclusions=initial_exclusions(args.exclusions)
     grid=tiles()
-    candidates=[]
+    candidates=list(state.get("candidate_pool",[]))
     good=0
     for tick in range(args.tiles):
         tileid=(cursor+tick)%len(grid)
@@ -180,7 +180,7 @@ def run(args):
                 pin=str(attrs.get("PAMS_PIN") or attrs.get("GIS_PIN") or "").strip()
                 key=norm(address+", "+city)
                 if not address or not city or not re.match(r"^\d",address):continue
-                if pin in seen_pins or key in seen_addresses or key in exclusions:continue
+                if (pin and pin in seen_pins) or key in seen_addresses or norm(address) in exclusions:continue
                 try:
                     pavement,num=query_features(PAVEMENT,shape(parcel["geometry"]).bounds,
                         where="ClassName = 'Other'",fields="OBJECTID,ClassName",limit=None,cap=5000)
@@ -219,11 +219,12 @@ def run(args):
         if key in unique:continue
         unique[key]=row
     chosen=list(unique.values())[:args.max_results]
+    state["candidate_pool"]=list(unique.values())[args.max_results:]
     for row in chosen:
         seen_addresses.add(norm(row["address"]+", "+row["municipality"]))
         if row["parcel_pin"]:seen_pins.add(row["parcel_pin"])
     audit.update({"succeeded_tiles":good,"new_provisional_parcels":len(chosen),
-                  "all_current_candidates":len(unique),"remaining_candidates_not_delivered":max(0,len(unique)-len(chosen)),
+                  "all_current_candidates":len(unique),"remaining_candidates_not_delivered":len(state["candidate_pool"]),
                   "next_grid_cursor":state["cursor"],
                   "output_type":"PROVISIONAL GIS PARCELS, not qualified solar-carport property leads"})
     (out/f"{day}_audit.json").write_text(json.dumps(audit,indent=2))
