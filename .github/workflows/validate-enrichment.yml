@@ -1,0 +1,54 @@
+name: Validate Excel Enrichment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate-enrichment.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nj-carport-enrichment-validation
+  cancel-in-progress: false
+
+jobs:
+  spreadsheet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest -q test_enrich_reports.py
+      - name: Enrich latest committed GIS data and generate Excel
+        run: python enrich_reports.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: solar-carport-excel-validation-${{ github.run_id }}
+          path: |
+            daily_reports/*_NJ_solar_carport_prospects.xlsx
+            daily_reports/*_enrichment_audit.json
+            daily_reports/*_enriched_candidates.csv
+            daily_reports/aerial/**/*.jpg
+      - name: Save Excel to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add daily_reports/*_NJ_solar_carport_prospects.xlsx daily_reports/*_enrichment_audit.json daily_reports/*_enriched_candidates.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish verified-format daily NJ carport Excel report"
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git rebase origin/main || exit 1
+              if git push origin HEAD:main; then exit 0; fi
+              sleep 3
+            done
+            exit 1
+          fi
