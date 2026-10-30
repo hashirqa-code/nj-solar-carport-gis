@@ -11,8 +11,8 @@ on:
       - "seed_excluded_addresses.txt"
       - ".github/workflows/nj-carport-weekdays.yml"
   schedule:
-    # Both UTC offsets for 8am ET; gate keeps only the correct Eastern hour.
-    - cron: "0 12,13 * * 1-5"
+    # Both UTC offsets for 7am ET; gate keeps only the correct Eastern hour.
+    - cron: "0 11,12 * * 1-5"
 
 permissions:
   contents: write
@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Enforce weekday and DST-aware 8am Eastern time
+      - name: Enforce weekday and DST-aware 7am Eastern time
         id: gate
         shell: bash
         env:
@@ -36,7 +36,7 @@ jobs:
         run: |
           HOUR=$(TZ=America/New_York date +%H)
           DAY=$(TZ=America/New_York date +%u)
-          if [[ "$EVENT_NAME" != "schedule" || ("$HOUR" == "08" && "$DAY" -le 5) ]]; then
+          if [[ "$EVENT_NAME" != "schedule" || ("$HOUR" == "07" && "$DAY" -le 5) ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
