@@ -9,6 +9,8 @@ on:
       - "enrich_reports.py"
       - "fast_export.py"
       - "parking_estimates.py"
+      - "hosting_rank.py"
+      - "test_hosting_rank.py"
       - "test_parking_estimates.py"
       - "test_pipeline.py"
       - "test_enrich_reports.py"
@@ -61,6 +63,11 @@ jobs:
       - name: Query live NJGIN and NJDEP geometry
         if: steps.gate.outputs.run == 'true'
         run: python pipeline.py --out daily_reports --tiles 4 --per-tile 25 --max-results 20
+      - name: Rank nearby solar-generation hosting capacity across four NJ utilities
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        timeout-minutes: 9
+        run: python hosting_rank.py
       - name: Generate guaranteed GIS-only Excel fallback
         if: steps.gate.outputs.run == 'true'
         run: python fast_export.py
@@ -81,6 +88,9 @@ jobs:
             daily_reports/*_NJ_solar_carport_prospects.xlsx
             daily_reports/*_enriched_candidates.csv
             daily_reports/*_enrichment_audit.json
+            daily_reports/*_hosting_audit.json
+            daily_reports/*_hosting_enriched.csv
+            daily_reports/*_hosting_map_matches.csv
             daily_reports/aerial/**/*.jpg
           if-no-files-found: warn
       - name: Persist deduplication state and reports
@@ -92,6 +102,7 @@ jobs:
           git add daily_reports/state.json daily_reports/*_audit.json
           git add daily_reports/*_provisional_parcels.csv daily_reports/*_addresses_UNVERIFIED.txt 2>/dev/null || true
           git add daily_reports/*_NJ_solar_carport_prospects.xlsx daily_reports/*_enriched_candidates.csv daily_reports/*_enrichment_audit.json 2>/dev/null || true
+          git add daily_reports/*_hosting_audit.json daily_reports/*_hosting_enriched.csv daily_reports/*_hosting_map_matches.csv 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Save updated NJ solar carport GIS screening progress"
             # Changes to documentation or other repository files may land during a run.
