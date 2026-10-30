@@ -44,7 +44,7 @@ def osm_query(bounds):
     errors=[]
     for endpoint in OVERPASS:
         try:
-            r=SESSION.post(endpoint,data={"data":q},timeout=28)
+            r=SESSION.post(endpoint,data={"data":q},timeout=(5,12))
             r.raise_for_status()
             d=r.json()
             if "elements" not in d:raise ValueError("No elements field")
@@ -113,7 +113,7 @@ def aerial_export(row, outdir, number):
     p={"bbox":bbox,"bboxSR":"4326","imageSR":"3857","size":"1100,1100","format":"jpg",
        "f":"image","transparent":"false"}
     try:
-        r=SESSION.get(ORTHO+"/export",params=p,timeout=35)
+        r=SESSION.get(ORTHO+"/export",params=p,timeout=(5,18))
         r.raise_for_status()
         if not r.headers.get("Content-Type","").lower().startswith("image/"):
             raise ValueError("Imagery service did not return an image")
