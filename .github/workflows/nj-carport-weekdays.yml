@@ -1,0 +1,80 @@
+name: NJ Solar Carport GIS Screen
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "pipeline.py"
+      - "test_pipeline.py"
+      - "requirements.txt"
+      - "seed_excluded_addresses.txt"
+      - ".github/workflows/nj-carport-weekdays.yml"
+  schedule:
+    # Both UTC offsets for 8am ET; gate keeps only the correct Eastern hour.
+    - cron: "0 12,13 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nj-carport-gis-screen
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Enforce weekday and DST-aware 8am Eastern time
+        id: gate
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          HOUR=$(TZ=America/New_York date +%H)
+          DAY=$(TZ=America/New_York date +%u)
+          if [[ "$EVENT_NAME" != "schedule" || ("$HOUR" == "08" && "$DAY" -le 5) ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install Python
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        if: steps.gate.outputs.run == 'true'
+        run: python -m pip install -r requirements.txt
+      - name: Run offline regression tests
+        if: steps.gate.outputs.run == 'true'
+        run: python -m pytest -q
+      - name: Query live NJGIN and NJDEP geometry
+        if: steps.gate.outputs.run == 'true'
+        run: python pipeline.py --out daily_reports --tiles 2 --per-tile 12 --max-results 20
+      - name: Upload GIS audit and candidate report
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nj-carport-screen-${{ github.run_id }}
+          path: |
+            daily_reports/*_audit.json
+            daily_reports/*_provisional_parcels.csv
+            daily_reports/*_addresses_UNVERIFIED.txt
+          if-no-files-found: warn
+      - name: Persist deduplication state and reports
+        if: success() && steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add daily_reports/state.json daily_reports/*_audit.json
+          git add daily_reports/*_provisional_parcels.csv daily_reports/*_addresses_UNVERIFIED.txt 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Save updated NJ solar carport GIS screening progress"
+            git push
+          fi
