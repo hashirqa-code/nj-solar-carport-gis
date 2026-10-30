@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-30T16:58:12.853351-04:00",
+  "as_of": "2026-10-30T16:59:55.437349-04:00",
   "property_count": 20,
   "matched": 19,
   "map_errors": 1,
@@ -20,5 +20,5 @@
     ]
   },
   "capacity_reference": "PV GENERATION (not EV load). Compare approximate MWac, not MWdc.",
-  "seconds": 6.6
+  "seconds": 6.7
 }
