@@ -1,0 +1,30 @@
+name: Fast GIS Excel Delivery Test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/fast-spreadsheet.yml"
+permissions:
+  contents: read
+jobs:
+  create-excel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Test workbook packaging
+        run: pytest -q test_enrich_reports.py
+      - name: Generate initial Excel file without network dependencies
+        run: python fast_export.py
+      - name: Publish Excel as downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nj-gis-carport-preliminary-xlsx
+          path: daily_reports/*_NJ_solar_carport_prospects.xlsx
+          if-no-files-found: error
