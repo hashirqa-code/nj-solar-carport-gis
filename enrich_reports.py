@@ -197,7 +197,7 @@ def to_workbook_row(r,i):
         acres if acres else "",r.get("osm_largest_parking_polygon_acres","") or "",r.get("osm_parking_capacity_published",""),
         "",r.get("parking_evidence_level",""),r.get("osm_solar_warning",""),r.get("aerial_image_status",""),r.get("aerial_image_filename",""),
         r.get("hosting_map_mw") if r.get("hosting_map_mw") not in ("",None) else "UNKNOWN",
-        "","A — OSM parking mapped" if acres>=1 and not solar else "B — GIS lead, review",
+        "",r.get("hosting_score") or ("A — OSM parking mapped" if acres>=1 and not solar else "B — GIS lead, review"),
         r.get("parcel_source",""),r.get("pavement_source",""),r.get("osm_parking_feature_ids",""),r.get("osm_solar_feature_ids",""),
         r.get("parcel_pin",""),r.get("parcel_lat",""),r.get("parcel_lon",""),
         "Do not rely on 2015 pavement as parking; verify current stripes, roof/road/truck use, site ownership, solar plans and utility",
