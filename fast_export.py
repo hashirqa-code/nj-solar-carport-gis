@@ -1,0 +1,49 @@
+"""Guaranteed first-stage XLSX fallback, without waiting on OSM or imagery services."""
+import csv
+import json
+import sys
+from pathlib import Path
+from datetime import datetime
+from enrich_reports import FIELDS, to_workbook_row, write_xlsx
+
+def run(folder="daily_reports"):
+    p=Path(folder)
+    files=sorted(p.glob("*_provisional_parcels.csv"))
+    if not files:raise RuntimeError("No live GIS property CSV; will not invent leads")
+    src=files[-1]
+    day=src.name[:10]
+    with src.open("r",encoding="utf-8-sig",newline="") as f:
+        rows=list(csv.DictReader(f))
+    if not rows:raise RuntimeError("Zero GIS candidates; no workbook to export")
+    for r in rows:
+        r["parking_evidence_level"]="PARKING UNKNOWN — NJDEP OTHER PAVEMENT ONLY"
+        r["osm_solar_warning"]="NOT CHECKED"
+        r["aerial_image_status"]="NOT YET CHECKED"
+        r["osm_surface_parking_acres"]=0
+        r["osm_largest_parking_polygon_acres"]=0
+        r["osm_parking_capacity_published"]=""
+        r["aerial_image_filename"]=""
+        r["osm_parking_feature_ids"]=""
+        r["osm_solar_feature_ids"]=""
+    rows.sort(key=lambda r:float(r.get("largest_other_piece_acres") or 0),reverse=True)
+    widths=[8,26,19,16,14,12,12,18,19,17,17,14,15,24,22,22,27,14,20,22,30,30,23,22,18,14,14,54]
+    notes=[
+      ["Field","Explanation"],
+      ["Source",str(src)],
+      ["Status","PRELIMINARY GIS ONLY — parking and solar checks NOT COMPLETED"],
+      ["Parking stalls","UNKNOWN. Generic 2015 pavement is not a parking lot."],
+      ["Map source","NJGIN MOD-IV 2026 parcels and NJDEP 2015 other impervious"],
+      ["Ownership","User verifies independently; blank ownership field by design"],
+      ["Utility hosting","UNKNOWN until feeder-specific map validation"],
+      ["Fallback reason","This file is created immediately so a third-party OSM outage cannot block spreadsheet delivery."]
+    ]
+    dst=p/f"{day}_NJ_solar_carport_prospects.xlsx"
+    write_xlsx(dst,[("Solar Carport Leads",[FIELDS]+[to_workbook_row(r,i) for i,r in enumerate(rows,1)],widths),
+                    ("Method and Audit",notes,[29,110])])
+    print(json.dumps({"workbook":str(dst),"provisional_gis_rows":len(rows),"status":"FALLBACK_UNVERIFIED"}))
+
+if __name__=="__main__":
+    try:run()
+    except Exception as e:
+        print("Cannot create fallback workbook:",e,file=sys.stderr)
+        sys.exit(2)
