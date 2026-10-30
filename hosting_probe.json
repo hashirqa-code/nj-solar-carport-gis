@@ -581,6 +581,818 @@
         }
       ],
       "sampleError": null
+    },
+    "PSEG_Generation_Capacity": {
+      "url": "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/1",
+      "geometryType": "esriGeometryPoint",
+      "lastEditDate": 1788280128305,
+      "fields": [
+        {
+          "name": "ssp_guid",
+          "alias": "ssp_guid"
+        },
+        {
+          "name": "ssp_oid",
+          "alias": "ssp_oid"
+        },
+        {
+          "name": "BASE_CIRCUITID",
+          "alias": "BASE_CIRCUITID"
+        },
+        {
+          "name": "VVT_OID",
+          "alias": "VVT_OID"
+        },
+        {
+          "name": "VVT_VOLTAGE",
+          "alias": "VVT_VOLTAGE"
+        },
+        {
+          "name": "NM_BASE_CIRCUITID",
+          "alias": "NM_BASE_CIRCUITID"
+        },
+        {
+          "name": "NM_TotalSolar",
+          "alias": "NM_TotalSolar"
+        },
+        {
+          "name": "TotalSolar",
+          "alias": "TotalSolar"
+        },
+        {
+          "name": "circuittype",
+          "alias": "circuittype"
+        },
+        {
+          "name": "OverCapacity",
+          "alias": "OverCapacity"
+        },
+        {
+          "name": "Availability",
+          "alias": "Availability"
+        },
+        {
+          "name": "PendingSolar",
+          "alias": "PendingSolar"
+        },
+        {
+          "name": "CompleteSolar",
+          "alias": "CompleteSolar"
+        },
+        {
+          "name": "StationTotalLoad",
+          "alias": "StationTotalLoad"
+        },
+        {
+          "name": "divisioncode",
+          "alias": "divisioncode"
+        },
+        {
+          "name": "stationabbreviation",
+          "alias": "stationabbreviation"
+        },
+        {
+          "name": "stationname",
+          "alias": "stationname"
+        },
+        {
+          "name": "Customers_On_Circuit",
+          "alias": "Customers_On_Circuit"
+        },
+        {
+          "name": "circuitavailability",
+          "alias": "circuitavailability"
+        },
+        {
+          "name": "stationavailability",
+          "alias": "stationavailability"
+        },
+        {
+          "name": "TotalAvailabilitySymbol",
+          "alias": "TotalAvailabilitySymbol"
+        },
+        {
+          "name": "OBJECTID",
+          "alias": "OBJECTID"
+        }
+      ],
+      "samples": [
+        {
+          "ssp_guid": "4cd498d8-2b4d-4aef-a9d6-22415e0f6f59",
+          "ssp_oid": 51201,
+          "BASE_CIRCUITID": "HNC8021",
+          "VVT_OID": 1073,
+          "VVT_VOLTAGE": "13kV",
+          "NM_BASE_CIRCUITID": "HNC8021",
+          "NM_TotalSolar": 598.18,
+          "TotalSolar": 619.77,
+          "circuittype": null,
+          "OverCapacity": null,
+          "Availability": 4380.23,
+          "PendingSolar": 85.6,
+          "CompleteSolar": 534.17,
+          "StationTotalLoad": 23731.63,
+          "divisioncode": "ME",
+          "stationabbreviation": "HNC",
+          "stationname": "Hinchmans",
+          "Customers_On_Circuit": 1668,
+          "circuitavailability": 4380.23,
+          "stationavailability": 11268.37,
+          "TotalAvailabilitySymbol": 4380.23,
+          "OBJECTID": 1
+        },
+        {
+          "ssp_guid": "6ebfd0d5-3191-4af7-90e8-d39dd8fe9cf9",
+          "ssp_oid": 300589,
+          "BASE_CIRCUITID": "FAR4002",
+          "VVT_OID": 700,
+          "VVT_VOLTAGE": "4kV",
+          "NM_BASE_CIRCUITID": "FAR4002",
+          "NM_TotalSolar": 279.8,
+          "TotalSolar": 284.23,
+          "circuittype": null,
+          "OverCapacity": null,
+          "Availability": 915.77,
+          "PendingSolar": 0,
+          "CompleteSolar": 284.23,
+          "StationTotalLoad": 6006.29,
+          "divisioncode": "ME",
+          "stationabbreviation": "FAR",
+          "stationname": "Fairlawn",
+          "Customers_On_Circuit": 850,
+          "circuitavailability": 915.77,
+          "stationavailability": 0,
+          "TotalAvailabilitySymbol": 0,
+          "OBJECTID": 2
+        },
+        {
+          "ssp_guid": "c187ac9d-37a1-44de-b84b-811ad8be1ec2",
+          "ssp_oid": 351790,
+          "BASE_CIRCUITID": "FAW8014",
+          "VVT_OID": 720,
+          "VVT_VOLTAGE": "13kV",
+          "NM_BASE_CIRCUITID": "FAW8014",
+          "NM_TotalSolar": 707.87,
+          "TotalSolar": 748.82,
+          "circuittype": null,
+          "OverCapacity": null,
+          "Availability": 4251.18,
+          "PendingSolar": 47.2,
+          "CompleteSolar": 701.62,
+          "StationTotalLoad": 12976.61,
+          "divisioncode": "CE",
+          "stationabbreviation": "FAW",
+          "stationname": "Fanwood",
+          "Customers_On_Circuit": 2609,
+          "circuitavailability": 4251.18,
+          "stationavailability": 22023.39,
+          "TotalAvailabilitySymbol": 4251.18,
+          "OBJECTID": 3
+        },
+        {
+          "ssp_guid": "2e455b6c-5abf-4f4d-abbe-14885821e976",
+          "ssp_oid": 601178,
+          "BASE_CIRCUITID": "CRA4011",
+          "VVT_OID": 449,
+          "VVT_VOLTAGE": "4kV",
+          "NM_BASE_CIRCUITID": "CRA4011",
+          "NM_TotalSolar": 341.14,
+          "TotalSolar": 347.45,
+          "circuittype": "Combo",
+          "OverCapacity": null,
+          "Availability": 852.55,
+          "PendingSolar": 253.8,
+          "CompleteSolar": 93.65,
+          "StationTotalLoad": 3616.32,
+          "divisioncode": "CE",
+          "stationabbreviation": "CRA",
+          "stationname": "Cranford",
+          "Customers_On_Circuit": 1023,
+          "circuitavailability": 852.55,
+          "stationavailability": 0,
+          "TotalAvailabilitySymbol": 0,
+          "OBJECTID": 4
+        }
+      ],
+      "error": null,
+      "http": null
+    },
+    "PSEG_NetMetering_PSP": {
+      "url": "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/0",
+      "geometryType": "esriGeometryPoint",
+      "lastEditDate": 1788280024435,
+      "fields": [
+        {
+          "name": "psp_guid",
+          "alias": "psp_guid"
+        },
+        {
+          "name": "psp_oid",
+          "alias": "psp_oid"
+        },
+        {
+          "name": "BASE_CIRCUITID",
+          "alias": "BASE_CIRCUITID"
+        },
+        {
+          "name": "VVT_OID",
+          "alias": "VVT_OID"
+        },
+        {
+          "name": "VVT_VOLTAGE",
+          "alias": "VVT_VOLTAGE"
+        },
+        {
+          "name": "NM_BASE_CIRCUITID",
+          "alias": "NM_BASE_CIRCUITID"
+        },
+        {
+          "name": "NM_TotalSolar",
+          "alias": "NM_TotalSolar"
+        },
+        {
+          "name": "TotalSolar",
+          "alias": "TotalSolar"
+        },
+        {
+          "name": "circuittype",
+          "alias": "circuittype"
+        },
+        {
+          "name": "OverCapacity",
+          "alias": "OverCapacity"
+        },
+        {
+          "name": "Availability",
+          "alias": "Availability"
+        },
+        {
+          "name": "PendingSolar",
+          "alias": "PendingSolar"
+        },
+        {
+          "name": "CompleteSolar",
+          "alias": "CompleteSolar"
+        },
+        {
+          "name": "StationTotalLoad",
+          "alias": "StationTotalLoad"
+        },
+        {
+          "name": "divisioncode",
+          "alias": "divisioncode"
+        },
+        {
+          "name": "stationabbreviation",
+          "alias": "stationabbreviation"
+        },
+        {
+          "name": "stationname",
+          "alias": "stationname"
+        },
+        {
+          "name": "Customers_On_Circuit",
+          "alias": "Customers_On_Circuit"
+        },
+        {
+          "name": "circuitavailability",
+          "alias": "circuitavailability"
+        },
+        {
+          "name": "stationavailability",
+          "alias": "stationavailability"
+        },
+        {
+          "name": "TotalAvailabilitySymbol",
+          "alias": "TotalAvailabilitySymbol"
+        },
+        {
+          "name": "OBJECTID",
+          "alias": "OBJECTID"
+        }
+      ],
+      "samples": [
+        {
+          "psp_guid": "18e0d564-4c74-4611-92b2-00024003c4a9",
+          "psp_oid": 147374,
+          "BASE_CIRCUITID": "MOY4006",
+          "VVT_OID": 1721,
+          "VVT_VOLTAGE": "4kV",
+          "NM_BASE_CIRCUITID": "MOY4006",
+          "NM_TotalSolar": 0,
+          "TotalSolar": 0,
+          "circuittype": "Network",
+          "OverCapacity": null,
+          "Availability": 1200,
+          "PendingSolar": 0,
+          "CompleteSolar": 0,
+          "StationTotalLoad": 1999.12,
+          "divisioncode": "SO",
+          "stationabbreviation": "MOY",
+          "stationname": "Mount Holly",
+          "Customers_On_Circuit": 83,
+          "circuitavailability": 1200,
+          "stationavailability": 0,
+          "TotalAvailabilitySymbol": 0,
+          "OBJECTID": 1
+        },
+        {
+          "psp_guid": "fe84e991-742b-40ec-964d-006cd5da71fc",
+          "psp_oid": 132970,
+          "BASE_CIRCUITID": "H-580",
+          "VVT_OID": 929,
+          "VVT_VOLTAGE": "26kV",
+          "NM_BASE_CIRCUITID": null,
+          "NM_TotalSolar": null,
+          "TotalSolar": null,
+          "circuittype": null,
+          "OverCapacity": null,
+          "Availability": null,
+          "PendingSolar": null,
+          "CompleteSolar": null,
+          "StationTotalLoad": null,
+          "divisioncode": null,
+          "stationabbreviation": null,
+          "stationname": null,
+          "Customers_On_Circuit": null,
+          "circuitavailability": null,
+          "stationavailability": null,
+          "TotalAvailabilitySymbol": null,
+          "OBJECTID": 2
+        },
+        {
+          "psp_guid": "60765a12-f6a4-4ca1-83b9-008783cf0833",
+          "psp_oid": 46929,
+          "BASE_CIRCUITID": "Q-485",
+          "VVT_OID": 2154,
+          "VVT_VOLTAGE": "26kV",
+          "NM_BASE_CIRCUITID": null,
+          "NM_TotalSolar": null,
+          "TotalSolar": null,
+          "circuittype": null,
+          "OverCapacity": null,
+          "Availability": null,
+          "PendingSolar": null,
+          "CompleteSolar": null,
+          "StationTotalLoad": null,
+          "divisioncode": null,
+          "stationabbreviation": null,
+          "stationname": null,
+          "Customers_On_Circuit": null,
+          "circuitavailability": null,
+          "stationavailability": null,
+          "TotalAvailabilitySymbol": null,
+          "OBJECTID": 3
+        },
+        {
+          "psp_guid": "786c9747-e050-490a-8826-00c95f2d9882",
+          "psp_oid": 36325,
+          "BASE_CIRCUITID": "FMT8011",
+          "VVT_OID": 3915,
+          "VVT_VOLTAGE": "13kV",
+          "NM_BASE_CIRCUITID": "FMT8011",
+          "NM_TotalSolar": 996.12,
+          "TotalSolar": 1013.97,
+          "circuittype": null,
+          "OverCapacity": null,
+          "Availability": 3986.03,
+          "PendingSolar": 305.7,
+          "CompleteSolar": 708.27,
+          "StationTotalLoad": 4041.86,
+          "divisioncode": "PA",
+          "stationabbreviation": "FMT",
+          "stationname": "Fairmount",
+          "Customers_On_Circuit": 641,
+          "circuitavailability": 3986.03,
+          "stationavailability": 30958.14,
+          "TotalAvailabilitySymbol": 3986.03,
+          "OBJECTID": 4
+        }
+      ],
+      "error": null,
+      "http": null
+    },
+    "ACE_2026_samples": {
+      "url": "https://services3.arcgis.com/agWTKEK7X5K1Bx7o/ArcGIS/rest/services/PHI_Hosting_Capacity10_2_2026/FeatureServer/4",
+      "geometryType": "esriGeometryPolyline",
+      "lastEditDate": 1790964530245,
+      "fields": [
+        {
+          "name": "Region",
+          "alias": "Region"
+        },
+        {
+          "name": "State",
+          "alias": "State"
+        },
+        {
+          "name": "Substation",
+          "alias": "Substation"
+        },
+        {
+          "name": "FeederID",
+          "alias": "FeederID"
+        },
+        {
+          "name": "Allowable_PV_kW",
+          "alias": "Allowable_PV_kW"
+        },
+        {
+          "name": "Last_Updated",
+          "alias": "Last_Updated"
+        },
+        {
+          "name": "Total_Active_Gen_kW",
+          "alias": "Total_Active_Gen_kW"
+        },
+        {
+          "name": "Total_Pending_Gen_kW",
+          "alias": "Total_Pending_Gen_kW"
+        },
+        {
+          "name": "Feeder_InReview_Gen_kW",
+          "alias": "Feeder_InReview_Gen_kW"
+        },
+        {
+          "name": "Transformer_InReview_Gen_kW",
+          "alias": "Transformer_InReview_Gen_kW"
+        },
+        {
+          "name": "Total_Gen_kW",
+          "alias": "Total_Gen_kW"
+        },
+        {
+          "name": "Total_InReview_LargeGen_kW",
+          "alias": "Total_InReview_LargeGen_kW"
+        },
+        {
+          "name": "Feeder_Large_Gen_HC",
+          "alias": "Feeder_Large_Gen_HC"
+        },
+        {
+          "name": "Transformer_Large_Gen_HC",
+          "alias": "Transformer_Large_Gen_HC"
+        },
+        {
+          "name": "Voltage",
+          "alias": "Voltage"
+        },
+        {
+          "name": "UpdateDate",
+          "alias": "UpdateDate"
+        },
+        {
+          "name": "Feeder_DER_Application_Capacity_In_Review",
+          "alias": "Feeder_DER_Application_Capacity_In_Review"
+        },
+        {
+          "name": "Substation_DER_Application_Capacity_In_Review",
+          "alias": "Substation_DER_Application_Capacity_In_Review"
+        },
+        {
+          "name": "OBJECTID",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "Shape__Length",
+          "alias": "Shape__Length"
+        }
+      ],
+      "samples": [
+        {
+          "Region": "Atlantic",
+          "State": "NJ",
+          "Substation": "Sea Isle",
+          "FeederID": "NJ0024",
+          "Allowable_PV_kW": 7145.422800000001,
+          "Last_Updated": 1790702051000,
+          "Total_Active_Gen_kW": 105.889,
+          "Total_Pending_Gen_kW": 10.64,
+          "Feeder_InReview_Gen_kW": 0,
+          "Transformer_InReview_Gen_kW": 0,
+          "Total_Gen_kW": 116.529,
+          "Total_InReview_LargeGen_kW": 0,
+          "Feeder_Large_Gen_HC": 7145.422800000001,
+          "Transformer_Large_Gen_HC": 27300,
+          "Voltage": 12.9,
+          "UpdateDate": 1790689947000,
+          "Feeder_DER_Application_Capacity_In_Review": "",
+          "Substation_DER_Application_Capacity_In_Review": "",
+          "OBJECTID": 3625,
+          "Shape__Length": 7117.491012487066
+        },
+        {
+          "Region": "Atlantic",
+          "State": "NJ",
+          "Substation": "Sea Isle",
+          "FeederID": "NJ0025",
+          "Allowable_PV_kW": 7005.2718,
+          "Last_Updated": 1790702051000,
+          "Total_Active_Gen_kW": 238.76,
+          "Total_Pending_Gen_kW": 17.92,
+          "Feeder_InReview_Gen_kW": 0,
+          "Transformer_InReview_Gen_kW": 0,
+          "Total_Gen_kW": 256.68,
+          "Total_InReview_LargeGen_kW": 0,
+          "Feeder_Large_Gen_HC": 7005.2718,
+          "Transformer_Large_Gen_HC": 19260,
+          "Voltage": 12.9,
+          "UpdateDate": 1790690359000,
+          "Feeder_DER_Application_Capacity_In_Review": "",
+          "Substation_DER_Application_Capacity_In_Review": "",
+          "OBJECTID": 3626,
+          "Shape__Length": 14997.359741283082
+        },
+        {
+          "Region": "Atlantic",
+          "State": "NJ",
+          "Substation": "Sea Isle",
+          "FeederID": "NJ0026",
+          "Allowable_PV_kW": 2638.3671600000007,
+          "Last_Updated": 1790702051000,
+          "Total_Active_Gen_kW": 161.97,
+          "Total_Pending_Gen_kW": 0,
+          "Feeder_InReview_Gen_kW": 0,
+          "Transformer_InReview_Gen_kW": 0,
+          "Total_Gen_kW": 161.97,
+          "Total_InReview_LargeGen_kW": 0,
+          "Feeder_Large_Gen_HC": 2638.3671600000007,
+          "Transformer_Large_Gen_HC": 27300,
+          "Voltage": 12.9,
+          "UpdateDate": 1790690359000,
+          "Feeder_DER_Application_Capacity_In_Review": "",
+          "Substation_DER_Application_Capacity_In_Review": "",
+          "OBJECTID": 3627,
+          "Shape__Length": 9909.676932976403
+        },
+        {
+          "Region": "Atlantic",
+          "State": "NJ",
+          "Substation": "Sea Isle",
+          "FeederID": "NJ0027",
+          "Allowable_PV_kW": 7158.2048,
+          "Last_Updated": 1790702051000,
+          "Total_Active_Gen_kW": 95.387,
+          "Total_Pending_Gen_kW": 8.36,
+          "Feeder_InReview_Gen_kW": 0,
+          "Transformer_InReview_Gen_kW": 0,
+          "Total_Gen_kW": 103.747,
+          "Total_InReview_LargeGen_kW": 0,
+          "Feeder_Large_Gen_HC": 7158.2048,
+          "Transformer_Large_Gen_HC": 19260,
+          "Voltage": 12.9,
+          "UpdateDate": 1790690359000,
+          "Feeder_DER_Application_Capacity_In_Review": "",
+          "Substation_DER_Application_Capacity_In_Review": "",
+          "OBJECTID": 3628,
+          "Shape__Length": 8009.895954616293
+        }
+      ],
+      "error": null,
+      "http": null
+    },
+    "ORU_segmented_samples": {
+      "url": "https://services.arcgis.com/ciPnsNFi1JLWVjva/ArcGIS/rest/services/ORU_NodalHCV_Prod/FeatureServer/0",
+      "geometryType": "esriGeometryPolyline",
+      "lastEditDate": 1790887063916,
+      "fields": [
+        {
+          "name": "REGION",
+          "alias": "Operating Company"
+        },
+        {
+          "name": "SUBSTATION",
+          "alias": "Substation/Bank Name"
+        },
+        {
+          "name": "CIRCUIT",
+          "alias": "Feeder"
+        },
+        {
+          "name": "LOCAL_VOLTAGE",
+          "alias": "Local Voltage (kV)"
+        },
+        {
+          "name": "LOCAL_MAX",
+          "alias": "Local Maximum Hosting Capacity (MW)"
+        },
+        {
+          "name": "LOCAL_MIN",
+          "alias": "Local Minimum Hosting Capacity (MW)"
+        },
+        {
+          "name": "ANTI_ISLANDING",
+          "alias": "Anti-Islanding Hosting Capacity (MW)"
+        },
+        {
+          "name": "CONNECTED_DER",
+          "alias": "Feeder DG Connected (MW)"
+        },
+        {
+          "name": "QUEUED_DER",
+          "alias": "Feeder DG In Queue (MW)"
+        },
+        {
+          "name": "SUBSTATION_PROTECTION",
+          "alias": "Substation Backfeed Protection"
+        },
+        {
+          "name": "NYISO_LOAD_ZONE",
+          "alias": "NYISO Load Zone"
+        },
+        {
+          "name": "HC_REFESH_DATE",
+          "alias": "HCA Refresh Date"
+        },
+        {
+          "name": "DER_REFESH_DATE",
+          "alias": "Feeder DG Connected/In Queue Refresh Date"
+        },
+        {
+          "name": "DG_ANALYSIS",
+          "alias": "Feeder DG Connected Since Last HCA Refresh Date (MW)"
+        },
+        {
+          "name": "OBJECTID_1",
+          "alias": "OBJECTID"
+        },
+        {
+          "name": "PV_SECTION",
+          "alias": "Section Hosting Capacity"
+        },
+        {
+          "name": "PV_BANK_RATING",
+          "alias": "Bank Rating (MW)"
+        },
+        {
+          "name": "PV_FEEDER_RATING",
+          "alias": "Feeder Rating (MVA)"
+        },
+        {
+          "name": "PV_FLICKER",
+          "alias": "Flicker Value (MW)"
+        },
+        {
+          "name": "PV_OVER_VOLTAGE",
+          "alias": "Primary Over-Voltage (MW)"
+        },
+        {
+          "name": "PV_VOLTAGE_DEVIATION",
+          "alias": "Primary Voltage Deviation (MW)"
+        },
+        {
+          "name": "PV_REGULATOR_DEVIATION",
+          "alias": "Regulator Deviation (MW)"
+        },
+        {
+          "name": "PV_THERMAL",
+          "alias": "Thermal from Generation (MW)"
+        },
+        {
+          "name": "PV_ANTI_ISLAND",
+          "alias": "Anti-Islanding Hosting Capacity Limit (MW)"
+        },
+        {
+          "name": "CONSTRUCTIONTYPE",
+          "alias": "Cable Type"
+        },
+        {
+          "name": "SystemData",
+          "alias": "System Data"
+        },
+        {
+          "name": "NOTES",
+          "alias": "Notes"
+        },
+        {
+          "name": "Shape__Length",
+          "alias": "Shape__Length"
+        }
+      ],
+      "samples": [
+        {
+          "REGION": "ORU",
+          "SUBSTATION": "89A",
+          "CIRCUIT": "89-1-13",
+          "LOCAL_VOLTAGE": 13.2,
+          "LOCAL_MAX": 0.1,
+          "LOCAL_MIN": 0.1,
+          "ANTI_ISLANDING": 0.1,
+          "CONNECTED_DER": 0.556,
+          "QUEUED_DER": 0,
+          "SUBSTATION_PROTECTION": "No",
+          "NYISO_LOAD_ZONE": "G",
+          "HC_REFESH_DATE": 1790899200000,
+          "DER_REFESH_DATE": 1790899200000,
+          "DG_ANALYSIS": 0.556,
+          "OBJECTID_1": 1,
+          "PV_SECTION": 0.1,
+          "PV_BANK_RATING": 0.1,
+          "PV_FEEDER_RATING": 0.1,
+          "PV_FLICKER": 0.1,
+          "PV_OVER_VOLTAGE": 0.1,
+          "PV_VOLTAGE_DEVIATION": 0.1,
+          "PV_REGULATOR_DEVIATION": 0.1,
+          "PV_THERMAL": 0.1,
+          "PV_ANTI_ISLAND": 0.1,
+          "CONSTRUCTIONTYPE": "OH",
+          "SystemData": "https://www.oru.com/-/media/files/oru/documents/business-partners/hosting-capacity/historical-8760/8760-area-stations",
+          "NOTES": "There is no Capacity available on this Circuit.",
+          "Shape__Length": 0.0006862095070540931
+        },
+        {
+          "REGION": "ORU",
+          "SUBSTATION": "2A",
+          "CIRCUIT": "2-1-13",
+          "LOCAL_VOLTAGE": 13.2,
+          "LOCAL_MAX": 0.1,
+          "LOCAL_MIN": 0,
+          "ANTI_ISLANDING": 0.1,
+          "CONNECTED_DER": 5.372,
+          "QUEUED_DER": 0,
+          "SUBSTATION_PROTECTION": "Yes",
+          "NYISO_LOAD_ZONE": "G",
+          "HC_REFESH_DATE": 1790899200000,
+          "DER_REFESH_DATE": 1790899200000,
+          "DG_ANALYSIS": 5.372,
+          "OBJECTID_1": 2,
+          "PV_SECTION": 0,
+          "PV_BANK_RATING": 0.1,
+          "PV_FEEDER_RATING": 0.1,
+          "PV_FLICKER": 0.1,
+          "PV_OVER_VOLTAGE": 0,
+          "PV_VOLTAGE_DEVIATION": 0.1,
+          "PV_REGULATOR_DEVIATION": 0.1,
+          "PV_THERMAL": 0.1,
+          "PV_ANTI_ISLAND": 0.1,
+          "CONSTRUCTIONTYPE": "OH",
+          "SystemData": "https://www.oru.com/-/media/files/oru/documents/business-partners/hosting-capacity/historical-8760/8760-area-stations",
+          "NOTES": "There is no Capacity available on this Circuit. Cost Sharing 2.0 on this Circuit with the Project CDG-00525.This circuit has 3V0 protection. ",
+          "Shape__Length": 0.0005780919551101003
+        },
+        {
+          "REGION": "ORU",
+          "SUBSTATION": "67A",
+          "CIRCUIT": "67-2-13",
+          "LOCAL_VOLTAGE": 13.2,
+          "LOCAL_MAX": 10,
+          "LOCAL_MIN": 5,
+          "ANTI_ISLANDING": 0.036,
+          "CONNECTED_DER": 0,
+          "QUEUED_DER": 0,
+          "SUBSTATION_PROTECTION": "No",
+          "NYISO_LOAD_ZONE": "G",
+          "HC_REFESH_DATE": 1790899200000,
+          "DER_REFESH_DATE": 1790899200000,
+          "DG_ANALYSIS": 0,
+          "OBJECTID_1": 3,
+          "PV_SECTION": 6.858,
+          "PV_BANK_RATING": 23.5,
+          "PV_FEEDER_RATING": 6.858,
+          "PV_FLICKER": 10,
+          "PV_OVER_VOLTAGE": 10,
+          "PV_VOLTAGE_DEVIATION": 10,
+          "PV_REGULATOR_DEVIATION": 10,
+          "PV_THERMAL": 10,
+          "PV_ANTI_ISLAND": 0.036,
+          "CONSTRUCTIONTYPE": "OH",
+          "SystemData": "https://www.oru.com/-/media/files/oru/documents/business-partners/hosting-capacity/historical-8760/8760-area-stations",
+          "NOTES": null,
+          "Shape__Length": 0.0007074524322633792
+        },
+        {
+          "REGION": "ORU",
+          "SUBSTATION": "71A",
+          "CIRCUIT": "71-3-13",
+          "LOCAL_VOLTAGE": 13.2,
+          "LOCAL_MAX": 2.99,
+          "LOCAL_MIN": 2,
+          "ANTI_ISLANDING": 2.134,
+          "CONNECTED_DER": 1.557,
+          "QUEUED_DER": 0,
+          "SUBSTATION_PROTECTION": "No",
+          "NYISO_LOAD_ZONE": "G",
+          "HC_REFESH_DATE": 1790899200000,
+          "DER_REFESH_DATE": 1790899200000,
+          "DG_ANALYSIS": 1.557,
+          "OBJECTID_1": 4,
+          "PV_SECTION": 2.3,
+          "PV_BANK_RATING": 46.6,
+          "PV_FEEDER_RATING": 6.858,
+          "PV_FLICKER": 4.01,
+          "PV_OVER_VOLTAGE": 2.3,
+          "PV_VOLTAGE_DEVIATION": 7,
+          "PV_REGULATOR_DEVIATION": 10,
+          "PV_THERMAL": 7,
+          "PV_ANTI_ISLAND": 2.226,
+          "CONSTRUCTIONTYPE": "OH",
+          "SystemData": "https://www.oru.com/-/media/files/oru/documents/business-partners/hosting-capacity/historical-8760/8760-area-stations",
+          "NOTES": null,
+          "Shape__Length": 0.0005802846368411367
+        }
+      ],
+      "error": null,
+      "http": null
     }
   },
   "maps": {
