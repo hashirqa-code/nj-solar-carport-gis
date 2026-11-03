@@ -1,0 +1,24 @@
+{
+  "as_of": "2026-11-03T07:45:51.647696-05:00",
+  "property_count": 8,
+  "matched": 6,
+  "map_errors": 3,
+  "method": "NEAREST PUBLIC MAP FEATURE WITHIN 400-450M; NOT VERIFIED FEEDER",
+  "sources": {
+    "ACE": [
+      "https://services3.arcgis.com/agWTKEK7X5K1Bx7o/ArcGIS/rest/services/PHI_Hosting_Capacity10_2_2026/FeatureServer/4"
+    ],
+    "ORU": [
+      "https://services.arcgis.com/ciPnsNFi1JLWVjva/ArcGIS/rest/services/ORU_NodalHCV_Prod/FeatureServer/0"
+    ],
+    "PSEG": [
+      "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/1",
+      "https://services.arcgis.com/yHb9HdkiNl1PZaOr/arcgis/rest/services/NM_HCM_ServicePoints/FeatureServer/0"
+    ],
+    "JCPL": [
+      "https://services9.arcgis.com/QhIvHlqYDjdoPWZG/arcgis/rest/services/Solar_Accommodation_Limit_2020/FeatureServer/0"
+    ]
+  },
+  "capacity_reference": "PV GENERATION (not EV load). Compare approximate MWac, not MWdc.",
+  "seconds": 3.0
+}
