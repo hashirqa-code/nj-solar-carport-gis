@@ -1,0 +1,70 @@
+{
+  "started_at": "2026-11-09T07:50:31.947166-05:00",
+  "source_health": {
+    "NJGIN parcels": {
+      "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0",
+      "maxRecordCount": 2000,
+      "found_fields": [
+        "PROP_CLASS",
+        "PROP_LOC"
+      ]
+    },
+    "NJDEP other pavement": {
+      "url": "https://mapsdep.nj.gov/arcgis/rest/services/Cached_Layers/Rast_impervious_surface_3857/MapServer/0",
+      "maxRecordCount": 2000,
+      "found_fields": [
+        "ClassName"
+      ]
+    }
+  },
+  "tiles": [
+    {
+      "tile": 48,
+      "offset": 0,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 381,
+      "failed_pavement": 0,
+      "candidates": 9,
+      "status": "ok"
+    },
+    {
+      "tile": 49,
+      "offset": 0,
+      "returned_parcels": 0,
+      "total_intersecting_parcels": 0,
+      "failed_pavement": 0,
+      "candidates": 0,
+      "status": "ok"
+    },
+    {
+      "tile": 50,
+      "offset": 0,
+      "returned_parcels": 25,
+      "total_intersecting_parcels": 1901,
+      "failed_pavement": 0,
+      "candidates": 6,
+      "status": "ok"
+    },
+    {
+      "tile": 51,
+      "offset": 0,
+      "returned_parcels": 0,
+      "total_intersecting_parcels": 0,
+      "failed_pavement": 0,
+      "candidates": 0,
+      "status": "ok"
+    }
+  ],
+  "limitations": [
+    "NJDEP 2015 Other pavement is NOT classified parking; buildings can appear in Other where LiDAR missing.",
+    "Proxy space-equivalents are NOT measured parking stalls.",
+    "No present-day parking layout, utility hosting, existing solar, ownership, flood or wetlands validation.",
+    "PROP_LOC is an assessor address, not a USPS-verified delivery address."
+  ],
+  "succeeded_tiles": 4,
+  "new_provisional_parcels": 15,
+  "all_current_candidates": 15,
+  "remaining_candidates_not_delivered": 0,
+  "next_grid_cursor": 52,
+  "output_type": "PROVISIONAL GIS PARCELS, not qualified solar-carport property leads"
+}
