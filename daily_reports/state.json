@@ -1,5 +1,5 @@
 {
-  "cursor": 56,
+  "cursor": 60,
   "tile_offsets": {
     "0": 0,
     "1": 0,
@@ -56,7 +56,11 @@
     "52": 25,
     "53": 0,
     "54": 25,
-    "55": 25
+    "55": 25,
+    "56": 25,
+    "57": 25,
+    "58": 0,
+    "59": 0
   },
   "candidate_pool": [],
   "seen_pins": [
@@ -271,7 +275,9 @@
     "2017_3803_5",
     "2017_406_22",
     "2019_4002_7",
-    "2019_901_64.01"
+    "2019_901_64.01",
+    "2101_105_13",
+    "2101_602_29.02"
   ],
   "seen_addresses": [
     "010northpoconordmountainlakesboro",
@@ -466,8 +472,10 @@
     "760milfordfrenchtownrdalexandriatwp",
     "76conoverroadcoltsnecktownship",
     "771somersetstfranklintwp",
+    "77gibbsrdallamuchytwp",
     "784riverrdewingtwp",
     "799rt202readingtontwp",
+    "7freebornlaneallamuchytwp",
     "805thirteenthavebelmarboro",
     "811wroute130nburlingtoncity",
     "81industrialroadberkeleyheightstwp",

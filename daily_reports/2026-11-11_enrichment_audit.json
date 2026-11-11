@@ -1,0 +1,12 @@
+{
+  "as_of": "2026-11-11T12:50:00.393826+00:00",
+  "gis_date": "2026-11-11",
+  "candidate_count": 2,
+  "osm_query_failures": 2,
+  "osm_mapped_parking": 0,
+  "aerial_previews": 2,
+  "parking_stall_counts_independently_verified": 0,
+  "notes": "Workbook is a screening list. Ownership and individual stall counts not verified.",
+  "preliminary_parking_capacity_estimates": 2,
+  "estimate_method": "Assumed share of NJDEP Other pavement varies by MOD-IV class/use code, converted at 350/325/300 sqft per stall"
+}
