@@ -1,5 +1,5 @@
 {
-  "cursor": 72,
+  "cursor": 76,
   "tile_offsets": {
     "0": 0,
     "1": 0,
@@ -72,7 +72,11 @@
     "68": 25,
     "69": 25,
     "70": 0,
-    "71": 25
+    "71": 25,
+    "72": 0,
+    "73": 0,
+    "74": 25,
+    "75": 25
   },
   "candidate_pool": [],
   "seen_pins": [
@@ -273,6 +277,7 @@
     "1808_88.01_7.01",
     "1902_105_6.02",
     "1902_116_24.03",
+    "1905_48_26.07",
     "1909_1_35",
     "1909_7_2",
     "1909_7_22",
@@ -280,6 +285,7 @@
     "1911_16_1",
     "1911_16_1.09",
     "1911_64_4.02",
+    "1914_6_1",
     "2001_101_2",
     "2001_1301_1",
     "2001_1301_21",
@@ -327,6 +333,7 @@
     "100maidenheadlanelawrencetwp",
     "100majesticwayeveshamtwp",
     "100palmeravekeansburgboro",
+    "100rt23montaguetwp",
     "100sullivanwaytrentoncity",
     "1012madisonaverahwaycity",
     "101ridgerdlittlesilverboro",
@@ -407,6 +414,7 @@
     "2131felverctrahwaycity",
     "21752195elizabethaverahwaycity",
     "21lasattaavenueenglishtownboro",
+    "21ridgerdfrankfordtwp",
     "22002210kuserrdhamiltontwp",
     "225wclintonavenuebergenfieldboro",
     "2270southfirelaneroadsouthamptontwp",
