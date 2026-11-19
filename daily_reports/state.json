@@ -1,5 +1,5 @@
 {
-  "cursor": 76,
+  "cursor": 80,
   "tile_offsets": {
     "0": 0,
     "1": 0,
@@ -76,7 +76,11 @@
     "72": 0,
     "73": 0,
     "74": 25,
-    "75": 25
+    "75": 25,
+    "76": 25,
+    "77": 25,
+    "78": 0,
+    "79": 0
   },
   "candidate_pool": [],
   "seen_pins": [
@@ -321,7 +325,13 @@
     "2019_4002_7",
     "2019_901_64.01",
     "2101_105_13",
-    "2101_602_29.02"
+    "2101_602_29.02",
+    "2103_2_1.01",
+    "2104_302_1",
+    "2104_501_11.03",
+    "2104_904_6.01",
+    "2104_904_8.04",
+    "2106_201_27"
   ],
   "seen_addresses": [
     "010northpoconordmountainlakesboro",
@@ -346,6 +356,7 @@
     "1055hudsonstuniontwp",
     "105route46mountainlakesboro",
     "1060route22clintontwp",
+    "106route94blairstowntwp",
     "1079stateroute173bethlehemtwp",
     "1087stateroute173bethlehemtwp",
     "1092route206bordentowntwp",
@@ -357,14 +368,17 @@
     "1140randolphaverahwaycity",
     "1165rt27franklintwp",
     "1171woodlanerdeastamptontwp",
+    "117walnutvalleyroadblairstowntwp",
     "1200bangsavenueasburyparkcity",
     "120blackhorsepikeaudubonboro",
     "1210route23butlerboro",
+    "1212bjacksonburgrdblairstowntwp",
     "1220route23butlerboro",
     "123route537coltsnecktownship",
     "125bucksmillsroadcoltsnecktownship",
     "125patersonhamburgtpkriverdaleboro",
     "1299mainstrahwaycity",
+    "12eisenhowerroadblairstowntwp",
     "1300bangsavenueasburyparkcity",
     "1301route23butlerboro",
     "130blackhorsepikeaudubonboro",
@@ -526,6 +540,7 @@
     "65bartholdiavebutlerboro",
     "660rosedaleroadlawrencetwp",
     "675franklinblvdfranklintwp",
+    "689waterstreetbelvideretown",
     "700riverroadedgewaterboro",
     "700route73southeveshamtwp",
     "70conoverroadcoltsnecktownship",
@@ -538,6 +553,7 @@
     "76conoverroadcoltsnecktownship",
     "771somersetstfranklintwp",
     "77gibbsrdallamuchytwp",
+    "780route94frelinghuysentwp",
     "784riverrdewingtwp",
     "799rt202readingtontwp",
     "7freebornlaneallamuchytwp",
