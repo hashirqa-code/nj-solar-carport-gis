@@ -1,5 +1,5 @@
 {
-  "cursor": 92,
+  "cursor": 96,
   "tile_offsets": {
     "0": 0,
     "1": 0,
@@ -92,7 +92,11 @@
     "88": 25,
     "89": 0,
     "90": 0,
-    "91": 25
+    "91": 25,
+    "92": 0,
+    "93": 25,
+    "94": 25,
+    "95": 25
   },
   "candidate_pool": [],
   "seen_pins": [
@@ -329,7 +333,10 @@
     "1911_16_1",
     "1911_16_1.09",
     "1911_64_4.02",
+    "1914_18.42_3",
+    "1914_4_5.01",
     "1914_6_1",
+    "1914_7_42.01",
     "2001_101_2",
     "2001_1301_1",
     "2001_1301_21",
@@ -444,6 +451,7 @@
     "156wbrowningrdbellmawrboro",
     "1574route23butlerboro",
     "15811611route23butlerboro",
+    "15rt23montaguetwp",
     "1600pinewaldrdbeachwoodboro",
     "1610riverrdhopewelltwp",
     "1675pinewaldrdbeachwoodboro",
@@ -499,6 +507,7 @@
     "2701rte130cinnaminsontwp",
     "270route130bordentowntwp",
     "275beachwaykeansburgboro",
+    "280cloverdmontaguetwp",
     "28harrisonavenueenglishtownboro",
     "291rt22readingtontwp",
     "294swashingtonavenuebergenfieldboro",
@@ -508,6 +517,7 @@
     "2beboutavelonghilltwp",
     "2pierstbayonnecity",
     "2southcorporatedrriverdaleboro",
+    "2weiderrdmontaguetwp",
     "300400connelldriveberkeleyheightstwp",
     "300bordchesterfieldrdchesterfieldtwp",
     "300ewashingtonavepleasantvillecity",
