@@ -1,5 +1,5 @@
 {
-  "cursor": 96,
+  "cursor": 100,
   "tile_offsets": {
     "0": 0,
     "1": 0,
@@ -96,7 +96,11 @@
     "92": 0,
     "93": 25,
     "94": 25,
-    "95": 25
+    "95": 25,
+    "96": 0,
+    "97": 0,
+    "98": 0,
+    "99": 25
   },
   "candidate_pool": [],
   "seen_pins": [
@@ -378,7 +382,8 @@
     "2104_501_11.03",
     "2104_904_6.01",
     "2104_904_8.04",
-    "2106_201_27"
+    "2106_201_27",
+    "2109_1401_1"
   ],
   "seen_addresses": [
     "010northpoconordmountainlakesboro",
@@ -582,6 +587,7 @@
     "495washcrosspennrdhopewelltwp",
     "49bloomfieldavemountainlakesboro",
     "4industrialrdpequannocktwp",
+    "500oldmineroadhardwicktwp",
     "500schooleysmtnrdwashingtontwp",
     "500wardavenuechesterfieldtwp",
     "5010rt130ndelrantwp",
